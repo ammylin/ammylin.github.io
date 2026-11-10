@@ -1,6 +1,6 @@
-# Ammy Lin’s website
+# Peresonal
 
-A data science portfolio for Ammy Lin, a Duke University student, with selected projects and a personal page for music, earlier writing, and press. Built for free hosting on GitHub Pages, with no package dependencies, database, WordPress plugins, or paid theme.
+A personal website with selected projects and a personal page for music, earlier writing, and press. Built for free hosting on GitHub Pages. 
 
 ## Preview locally
 
@@ -45,26 +45,3 @@ The main navigation is **Projects**, **About**, and **Beyond data**, plus contac
 The former `/blog/`, `/media/`, `/lessons/`, `/press/`, and `/events-gigs/` pages now redirect to the appropriate section of `/beyond/`. GitHub Pages serves these as HTML refresh redirects with a visible fallback link and a canonical URL. The site does not depend on JavaScript for these redirects or disclosure controls.
 
 The initial project selection uses public repositories, including four pinned projects. Descriptions distinguish collaborative work, classroom simulations, and synthetic datasets. Images on case-study pages link to their original repository figures. Update the project file when adding results or changing role descriptions; avoid presenting experimental results as production deployments.
-
-## Migration review before switching ammylin.com
-
-- Review the refreshed wording on the homepage and contact page.
-- The biography now identifies Ammy as a current Duke data science student, as confirmed in the website discussion.
-- The teaching section directs visitors to ask about current availability. The old Brainerd Lakes location statement has been removed from the published teaching section.
-- The WordPress contact form is replaced with `contactammylin@gmail.com`. No form submissions are stored by this site. The existing Google lesson-interest form remains available.
-- Performance cards open the original videos on YouTube. This avoids an embedded-player failure seen during preview testing. Video titles and thumbnail images are saved locally.
-- All 8 published posts, 13 media performances, 12 press links, and the original main page routes were imported. Existing post slugs are preserved; the earlier page indexes lead to sections of `/beyond/`.
-- WordPress comments, mailing subscriptions, unpublished drafts, admin data, category/tag archives, and plugin settings are not migrated. Keep a separate WordPress export/backup before cancelling hosting. The locally downloaded public content in `work/` is not a full WordPress backup and is not published or committed.
-- GitHub Pages is for this personal portfolio and writing site. If you later need checkout, accounts, or a business application, review the hosting choice before adding them.
-
-## Connect the custom domain after review
-
-1. Keep the domain registration for `ammylin.com` active. Moving the website does not require transferring the registration to a new registrar.
-2. In `site.json`, change `url` to `https://ammylin.com` and `preview` to `false`. The build will generate a `CNAME` file and enable search indexing.
-3. Verify your domain with GitHub and configure the repository’s custom domain and DNS using the current [GitHub documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site). Preserve email-related DNS records.
-4. Enable HTTPS, test both `ammylin.com` and `www.ammylin.com`, and check old post addresses.
-5. Back up WordPress, confirm domain and email renewals are separate from the hosting plan, and only then cancel the old hosting.
-
-## Build output
-
-`_site/` contains the generated public website. GitHub Actions uploads only this directory. Source content, migration notes, raw WordPress responses, and the temporary tools in `work/` are not served by GitHub Pages. The `work/` directory is ignored by Git.
