@@ -158,7 +158,6 @@ h1 em,h2 em{font-weight:400;color:#65775c}
 .video-poster:hover .play-icon{transform:scale(1.1)}
 .video-card>h3{font-family:var(--serif);font-size:18px;line-height:1.4;margin-top:15px}
 .video-fallback{font-size:10px;display:inline-block;margin-top:10px;color:var(--muted)}
-.video-frame{width:100%;aspect-ratio:16/9;display:block;border:0}
 .page-callout{background:var(--sage);padding:35px 40px;margin:40px 0 70px}
 .page-callout>h2{font-size:34px;margin-bottom:15px}
 .page-callout>p{font-size:14px;color:var(--muted);margin-bottom:20px}

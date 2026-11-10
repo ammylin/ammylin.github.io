@@ -29,7 +29,7 @@ The initial version uses `preview: true` in `site.json`, which asks search engin
 - `content/*.html`: the original page and post content, with WordPress layout code removed.
 - `scripts/build.py`: shared header and footer, homepage, page layouts, and RSS/sitemap generation.
 - `assets/style.css`: colors, typography, page layout, and responsive styles.
-- `assets/main.js`: mobile menu, writing search, and on-demand video playback.
+- `assets/main.js`: mobile menu and writing search.
 - `assets/images/`: local images, compressed as WebP. No images depend on WordPress staying online.
 
 To add a post, create `content/your-post-slug.html` and add its metadata to the `posts` array in `content/manifest.json`. Keep the newest post first. Rebuild and run the checks. You can also ask Codex to do this in plain English.
@@ -41,6 +41,7 @@ To add a post, create `content/your-post-slug.html` and add its metadata to the 
 - Confirm the lessons page’s Brainerd Lakes location and availability are current. They are preserved from the original.
 - Confirm whether the events page should remain a simple inquiry page or list upcoming events. The original said “UNDER CONSTRUCTION.”
 - The WordPress contact form is replaced with `contactammylin@gmail.com`. No form submissions are stored by this site. The existing Google lesson-interest form remains available.
+- Performance cards open the original videos on YouTube. This avoids an embedded-player failure seen during preview testing. Video titles and thumbnail images are saved locally.
 - All 8 published posts, 13 media performances, 12 press links, and the 7 original main page routes were imported. Existing post slugs are preserved. The refreshed blog index is at `/blog/`.
 - WordPress comments, mailing subscriptions, unpublished drafts, admin data, category/tag archives, and plugin settings are not migrated. Keep a separate WordPress export/backup before cancelling hosting. The locally downloaded public content in `work/` is not a full WordPress backup and is not published or committed.
 - GitHub Pages is for this personal portfolio and writing site. If you later need checkout, accounts, or a business application, review the hosting choice before adding them.
