@@ -14,13 +14,13 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory _site
 
 Open http://127.0.0.1:8000. After changing a file, rebuild and refresh the browser. Stop the server with Control-C.
 
-## Publish the GitHub preview
+## Publish the website
 
 Repository: https://github.com/ammylin/ammylin.github.io
 
-In the repository’s **Settings → Pages → Build and deployment**, set the source to **GitHub Actions**. Pushing to `main` then builds, checks, and publishes the site at https://ammylin.github.io. The first workflow may need to be rerun after selecting this setting.
+The repository’s **Settings → Pages → Build and deployment** uses **GitHub Actions**. Pushing to `main` builds, checks, and publishes the site at https://ammylin.com. Its custom domain is configured in the repository’s Pages settings.
 
-The initial version uses `preview: true` in `site.json`, which asks search engines not to index this staging copy. It has no custom domain configured. The public GitHub repository and preview are still accessible to anyone; preview mode is not access control.
+The public address in `site.json` is `https://ammylin.com`, with `preview: false` to allow search indexing. Canonical links, social metadata, RSS, and the sitemap use that address. For a future staging copy, set `preview: true` to request that search engines not index it; that setting does not provide access control.
 
 ## Edit the website
 

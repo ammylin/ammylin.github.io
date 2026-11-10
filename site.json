@@ -1,7 +1,7 @@
 {
   "name": "Ammy Lin",
   "email": "contactammylin@gmail.com",
-  "url": "https://ammylin.github.io",
-  "preview": true,
+  "url": "https://ammylin.com",
+  "preview": false,
   "description": "Ammy Lin is a data science student at Duke University. Explore projects in machine learning, data engineering, statistical analysis, and data ethics."
 }
