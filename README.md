@@ -1,6 +1,6 @@
 # Ammy Lin’s website
 
-A personal website for writing, music, and everyday discoveries. Built for free hosting on GitHub Pages, with no package dependencies, database, WordPress plugins, or paid theme.
+A data science portfolio for Ammy Lin, a Duke University student, with selected projects and a personal page for music, earlier writing, and press. Built for free hosting on GitHub Pages, with no package dependencies, database, WordPress plugins, or paid theme.
 
 ## Preview locally
 
@@ -26,23 +26,34 @@ The initial version uses `preview: true` in `site.json`, which asks search engin
 
 - `site.json`: contact email, website address, description, and preview mode.
 - `content/manifest.json`: post titles, dates, excerpts, images, reading times, and performance video details.
+- `content/projects.json`: selected projects, tools, summaries, scope, team attribution, source repositories, and figure credits. Set `featured` to `true` for homepage projects.
 - `content/*.html`: the original page and post content, with WordPress layout code removed.
 - `scripts/build.py`: shared header and footer, homepage, page layouts, and RSS/sitemap generation.
-- `assets/style.css`: colors, typography, page layout, and responsive styles.
-- `assets/main.js`: mobile menu and writing search.
+- `assets/style.css`: shared colors, typography, and original content styles.
+- `assets/portfolio.css`: data science homepage, project cards and case studies, the consolidated personal page, and responsive layouts.
+- `assets/main.js`: mobile menu and project category filters.
 - `assets/images/`: local images, compressed as WebP. No images depend on WordPress staying online.
 
 To add a post, create `content/your-post-slug.html` and add its metadata to the `posts` array in `content/manifest.json`. Keep the newest post first. Rebuild and run the checks. You can also ask Codex to do this in plain English.
 
+## Site structure
+
+The main navigation is **Projects**, **About**, and **Beyond data**, plus contact. Data science projects lead the homepage. `/projects/` has category filters and individual project summaries with links to the original work.
+
+`/beyond/` gathers musical performances, teaching and lesson inquiries, the earlier writing archive, and press coverage in one page. Additional material expands with native browser disclosure controls. Earlier writing is presented as an archive rather than a currently updated feed. Individual post URLs remain available for new and old essays.
+
+The former `/blog/`, `/media/`, `/lessons/`, `/press/`, and `/events-gigs/` pages now redirect to the appropriate section of `/beyond/`. GitHub Pages serves these as HTML refresh redirects with a visible fallback link and a canonical URL. The site does not depend on JavaScript for these redirects or disclosure controls.
+
+The initial project selection uses public repositories, including four pinned projects. Descriptions distinguish collaborative work, classroom simulations, and synthetic datasets. Images on case-study pages link to their original repository figures. Update the project file when adding results or changing role descriptions; avoid presenting experimental results as production deployments.
+
 ## Migration review before switching ammylin.com
 
 - Review the refreshed wording on the homepage and contact page.
-- Update the biography’s “incoming data science student at Duke University” wording when appropriate. It is preserved from the original.
-- Confirm the lessons page’s Brainerd Lakes location and availability are current. They are preserved from the original.
-- Confirm whether the events page should remain a simple inquiry page or list upcoming events. The original said “UNDER CONSTRUCTION.”
+- The biography now identifies Ammy as a current Duke data science student, as confirmed in the website discussion.
+- The teaching section directs visitors to ask about current availability. The old Brainerd Lakes location statement has been removed from the published teaching section.
 - The WordPress contact form is replaced with `contactammylin@gmail.com`. No form submissions are stored by this site. The existing Google lesson-interest form remains available.
 - Performance cards open the original videos on YouTube. This avoids an embedded-player failure seen during preview testing. Video titles and thumbnail images are saved locally.
-- All 8 published posts, 13 media performances, 12 press links, and the 7 original main page routes were imported. Existing post slugs are preserved. The refreshed blog index is at `/blog/`.
+- All 8 published posts, 13 media performances, 12 press links, and the original main page routes were imported. Existing post slugs are preserved; the earlier page indexes lead to sections of `/beyond/`.
 - WordPress comments, mailing subscriptions, unpublished drafts, admin data, category/tag archives, and plugin settings are not migrated. Keep a separate WordPress export/backup before cancelling hosting. The locally downloaded public content in `work/` is not a full WordPress backup and is not published or committed.
 - GitHub Pages is for this personal portfolio and writing site. If you later need checkout, accounts, or a business application, review the hosting choice before adding them.
 

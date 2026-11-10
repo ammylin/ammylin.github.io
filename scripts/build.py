@@ -13,11 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / '_site'
 CONFIG = json.loads((ROOT / 'site.json').read_text())
 DATA = json.loads((ROOT / 'content/manifest.json').read_text())
+PROJECTS = json.loads((ROOT / 'content/projects.json').read_text())
 BASE = CONFIG['url'].rstrip('/')
 POSTS = DATA['posts']
 PAGES = {p['slug']: p for p in DATA['pages']}
 E = escape
-NAV = [('/about/', 'About'), ('/blog/', 'Writing'), ('/media/', 'Music'), ('/lessons/', 'Lessons'), ('/press/', 'Press')]
+NAV = [('/projects/', 'Projects'), ('/about/', 'About'), ('/beyond/', 'Beyond data')]
 BUILT = []
 
 def content(slug):
@@ -40,25 +41,26 @@ def header(active):
 
 def footer():
     return f'''<footer class="site-footer"><div class="footer-top"><a class="wordmark" href="/">Ammy Lin<span class="brand-dot" aria-hidden="true">.</span></a><p>Stay curious. Keep growing.</p>
-    <div class="footer-links"><a href="mailto:{E(CONFIG['email'])}">Email {arrow()}</a><a href="https://www.youtube.com/@ammy-lin">YouTube {arrow()}</a><a href="/feed.xml">RSS {arrow()}</a></div></div>
-    <div class="footer-bottom"><span>© {datetime.now().year} Ammy Lin</span><span>A little corner of the internet, made with care.</span><a href="/events-gigs/">Events &amp; gigs</a></div></footer>'''
+    <div class="footer-links"><a href="https://github.com/ammylin">GitHub {arrow()}</a><a href="mailto:{E(CONFIG['email'])}">Email {arrow()}</a><a href="/feed.xml">RSS {arrow()}</a></div></div>
+    <div class="footer-bottom"><span>© {datetime.now().year} Ammy Lin</span><span>Data, ideas, and a little music.</span><a href="/beyond/">Beyond data {arrow()}</a></div></footer>'''
 
-def page(path, title, body, *, active='', description=None, image=None, article=None):
+def page(path, title, body, *, active='', description=None, image=None, article=None, redirect=None):
     desc = description or CONFIG['description']
-    full_title = title + ' — Ammy Lin' if title else 'Ammy Lin — Writing, music & everyday discoveries'
-    canonical = BASE + path
+    full_title = title + ' — Ammy Lin' if title else 'Ammy Lin — Data Science at Duke University'
+    canonical = BASE + (redirect or path)
+    refresh = f'<meta http-equiv="refresh" content="0;url={E(redirect,quote=True)}">' if redirect else ''
     og_image = BASE + (image or DATA['landscape'])
     robots = '<meta name="robots" content="noindex, nofollow">' if CONFIG.get('preview') else ''
-    structured = {'@context':'https://schema.org','@type':'Person','name':CONFIG['name'],'url':BASE,'sameAs':['https://www.youtube.com/@ammy-lin']}
+    structured = {'@context':'https://schema.org','@type':'Person','name':CONFIG['name'],'url':BASE,'affiliation':{'@type':'CollegeOrUniversity','name':'Duke University'},'sameAs':['https://github.com/ammylin','https://www.youtube.com/@ammy-lin']}
     if article:
         structured={'@context':'https://schema.org','@type':'BlogPosting','headline':article['title'],'datePublished':article['date'],'author':{'@type':'Person','name':CONFIG['name']},'url':canonical,'image':og_image}
     html=f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{E(full_title)}</title><meta name="description" content="{E(desc,quote=True)}">{robots}
+<title>{E(full_title)}</title><meta name="description" content="{E(desc,quote=True)}">{robots}{refresh}
 <link rel="canonical" href="{E(canonical)}"><meta name="theme-color" content="#f7f5ef">
 <meta property="og:type" content="{'article' if article else 'website'}"><meta property="og:title" content="{E(full_title,quote=True)}"><meta property="og:description" content="{E(desc,quote=True)}"><meta property="og:url" content="{E(canonical)}"><meta property="og:image" content="{E(og_image)}">
 <meta name="twitter:card" content="summary_large_image"><link rel="icon" href="{DATA['favicon']}" type="image/webp">
-<link rel="stylesheet" href="/assets/style.css"><script src="/assets/main.js" defer></script>
+<link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/portfolio.css"><script src="/assets/main.js" defer></script>
 <link rel="alternate" type="application/rss+xml" title="Ammy Lin’s writing" href="/feed.xml">
 <script type="application/ld+json">{json.dumps(structured,ensure_ascii=False).replace('</','<\\/')}</script>
 </head><body>{header(active)}<main id="main">{body}</main>{footer()}</body></html>'''
@@ -73,12 +75,69 @@ def post_card(p):
 def page_intro(eyebrow, title, subtitle=''):
     return f'<div class="page-intro"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1>' + (f'<p class="page-deck">{subtitle}</p>' if subtitle else '') + '</div>'
 
+def project_visual(project):
+    if project.get('image'):
+        return f'<img src="{E(project["image"])}" alt="" width="900" height="560" loading="lazy" decoding="async">'
+    motif = project.get('motif', 'risk')
+    labels = {'risk': ['Environmental data', 'Interpretable models', 'Decision rules'], 'simulation': ['Default scenarios', 'Loss distributions', 'Tail risk'], 'ethics': ['Consumer', 'Executive', 'Buyer', 'Data scientist']}
+    items = ''.join(f'<span>{E(label)}</span>' for label in labels[motif])
+    return f'<div class="project-motif motif-{motif}" aria-hidden="true"><span class="motif-caption">{E(project["category"])}</span><div class="motif-items">{items}</div><span class="motif-note">{E(project["motif_label"])}</span></div>'
+
+def project_card(project, heading='h3'):
+    tags=''.join(f'<span>{E(tool)}</span>' for tool in project['tools'])
+    url=f'/projects/{project["slug"]}/'
+    return f'''<article class="project-card" data-project-category="{E(project['category'])}"><a class="project-image" href="{url}" tabindex="-1" aria-hidden="true">{project_visual(project)}</a><p class="project-category">{E(project['category'])}</p><{heading} class="project-title"><a href="{url}">{E(project['title'])} {arrow()}</a></{heading}><p class="project-summary">{E(project['summary'])}</p><div class="project-tags">{tags}</div><a class="project-more" href="{url}">Explore project {arrow()}</a></article>'''
+
+def build_projects():
+    filters=''.join(f'<button type="button" data-project-filter="{E(category)}" aria-pressed="false">{E(category)}</button>' for category in dict.fromkeys(p['category'] for p in PROJECTS))
+    body=f'''<section class="wrap">{page_intro('Selected work','Questions worth<br><em>exploring with data.</em>', 'Projects across machine learning, data engineering, statistical analysis, and ethics. Each one starts with a question—and a closer look at the evidence.')}<div class="projects-toolbar"><div class="project-filters" role="group" aria-label="Filter projects by area"><button type="button" data-project-filter="all" aria-pressed="true">All projects</button>{filters}</div><p id="project-count" role="status" aria-live="polite">{len(PROJECTS)} projects</p></div><div class="project-grid project-grid-full" id="project-list">{''.join(project_card(p,heading='h2') for p in PROJECTS)}</div><div class="project-source-note"><p>More experiments and coursework live on GitHub.</p><a class="text-link" href="https://github.com/ammylin">Explore my repositories {arrow()}</a></div></section>'''
+    page('/projects/', 'Data science projects', body, active='/projects/',description='Explore Ammy Lin’s projects in machine learning, data engineering, statistical analysis, and data ethics at Duke University.')
+    for project in PROJECTS:
+        tags=''.join(f'<span>{E(tool)}</span>' for tool in project['tools'])
+        methods=''.join(f'<li>{E(step)}</li>' for step in project['approach'])
+        image=''
+        if project.get('image'):
+            image=f'''<figure class="project-figure"><a href="{E(project['image'])}" aria-label="Open project figure at full size"><img src="{E(project['image'])}" alt="{E(project['image_alt'],quote=True)}" loading="lazy"></a><figcaption>{E(project['image_caption'])} <a href="{E(project['image_source'])}">Source figure {arrow()}</a></figcaption></figure>'''
+        role=f'<section><h2>My contribution</h2><p>{E(project["role"])}</p></section>' if project.get('role') else ''
+        credits=f'<p class="project-credits">{E(project["credits"])}</p>' if project.get('credits') else ''
+        extra=''
+        for key,label in [('report','Read the report'),('demo',project.get('demo_label','Explore the demo'))]:
+            if project.get(key): extra+=f'<a class="text-link" href="{E(project[key])}">{E(label)} {arrow()}</a>'
+        body=f'''<article class="wrap project-detail"><a class="text-link back-link" href="/projects/">← All projects</a>{page_intro(E(project['category']),E(project['title']),E(project['summary']))}<div class="project-detail-meta"><p>{E(project['context'])}</p><div class="project-tags">{tags}</div></div><div class="project-actions"><a class="button" href="{E(project['github'])}">View repository {arrow()}</a>{extra}</div><div class="prose project-narrative"><section><h2>The question</h2><p>{E(project['question'])}</p></section>{role}<section><h2>The approach</h2><ul>{methods}</ul></section></div>{image}<div class="prose project-narrative"><section><h2>What this explores</h2><p>{E(project['takeaway'])}</p></section><section><h2>Scope &amp; limitations</h2><p>{E(project['limitation'])}</p></section></div><div class="project-credit-block">{credits}<p>Project summary and attribution are based on the <a href="{E(project['github'])}#readme">repository documentation</a>.</p></div><div class="project-bottom"><a class="text-link" href="/projects/">Explore more projects {arrow()}</a></div></article>'''
+        page(f'/projects/{project["slug"]}/',project['title'],body,active='/projects/',description=project['summary'],image=project.get('image'))
+
+def performance_card(video):
+    image=f'<img src="{video["thumbnail"]}" alt="" width="480" height="360" loading="lazy">' if video.get('thumbnail') else ''
+    return f'''<article class="video-card"><a class="video-poster" href="{E(video['url'])}" aria-label="Watch {E(video['title'],quote=True)} on YouTube">{image}<span class="play-icon" aria-hidden="true">▶</span></a><p class="project-category">{E(video['group'])}</p><h3>{E(video['title'])}</h3><a class="video-fallback" href="{E(video['url'])}">Watch on YouTube {arrow()}</a></article>'''
+
+def writing_row(post):
+    return f'<li><a href="/{post["slug"]}/"><span>{E(post["title"])}</span>{arrow()}</a><time datetime="{post["date"]}">{date_label(post["date"])}</time></li>'
+
+def build_beyond():
+    selected=[next(v for v in DATA['videos'] if v['group']==group) for group in ['Flute','Dizi','Piano']]
+    remaining=[v for v in DATA['videos'] if v not in selected]
+    lessons=content('lessons')
+    lessons=re.sub(r"<p>I'm currently based.*?</p>", '<p>For current lesson availability and options, please get in touch.</p>', lessons, flags=re.DOTALL)
+    lessons=lessons.replace('the form below','the lesson interest form').replace('https://ammylin.com/media/','/beyond/#music').replace('https://ammylin.com/press/','/beyond/#press')
+    years=sorted({post['date'][:4] for post in POSTS})
+    archive_years=years[0] if len(years)==1 else years[0]+'–'+years[-1]
+    body=f'''<section class="wrap beyond-page">{page_intro('Beyond the notebook','A few other<br><em>parts of me.</em>', 'Music, words, and the things that keep me curious. A home for my performances, earlier writing, and a few stories from along the way.')}<nav class="beyond-jumps" aria-label="On this page"><a href="#music">Music</a><a href="#writing">Writing archive</a><a href="#press">Press &amp; features</a></nav><section class="beyond-section" id="music"><div class="section-heading"><div><p class="eyebrow">A constant thread</p><h2>A life with music<span class="brand-dot">.</span></h2></div><a class="text-link" href="https://www.youtube.com/@ammy-lin">YouTube {arrow()}</a></div><p class="beyond-intro">From flute and viola to dizi and piano, music has been a part of my life for years. Here are a few performances.</p><div class="video-grid">{''.join(performance_card(v) for v in selected)}</div><details class="personal-details"><summary>More performances <span>{len(remaining)} recordings</span></summary><div class="video-grid expanded-videos">{''.join(performance_card(v) for v in remaining)}</div></details><details class="personal-details" id="lessons"><summary>Teaching &amp; lesson inquiries</summary><div class="prose teaching-story">{lessons}</div></details></section><section class="beyond-section" id="writing"><div class="section-heading"><div><p class="eyebrow">The writing archive</p><h2>Notes along the way<span class="brand-dot">.</span></h2></div><span class="archive-years">{archive_years}</span></div><p class="beyond-intro">Earlier reflections on growth, gratitude, and the everyday moments that stay with me.</p><ul class="writing-list">{''.join(writing_row(p) for p in POSTS[:3])}</ul><details class="personal-details"><summary>More from the archive <span>{len(POSTS)-3} essays</span></summary><ul class="writing-list">{''.join(writing_row(p) for p in POSTS[3:])}</ul></details></section><section class="beyond-section" id="press"><p class="eyebrow">Along the way</p><h2>Press &amp; features<span class="brand-dot">.</span></h2><p class="beyond-intro">Conversations, performances, and milestones from music and beyond.</p><details class="personal-details"><summary>Browse press coverage</summary><div class="prose press-list">{content('press')}</div></details></section></section>'''
+    page('/beyond/','Beyond data',body,active='/beyond/',description='Music, personal essays, and press features from Ammy Lin. Explore the interests beyond her work in data science.')
+
+def build_legacy_routes():
+    routes={'/blog/':('Writing archive','/beyond/#writing'),'/media/':('Music','/beyond/#music'),'/lessons/':('Music lessons','/beyond/#lessons'),'/press/':('Press','/beyond/#press'),'/events-gigs/':('Performance inquiries','/beyond/#music'),'/about-me/':('About','/about/')}
+    for path,(label,target) in routes.items():
+        body=f'<section class="wrap narrow">{page_intro("Explore",E(label))}<p class="page-deck">This section has a new home.</p><a class="button" href="{target}">Continue to {E(label.lower())} {arrow()}</a></section>'
+        page(path,label,body,active='/beyond/',redirect=target)
+
 def home():
-    body=f'''<section class="hero wrap"><div class="hero-copy"><p class="eyebrow"><span class="tiny-sun" aria-hidden="true">✳</span> Hello, I’m Ammy</p><h1>A life of<br><em>curiosity.</em></h1><p class="hero-intro">An explorer, musician, and lifelong learner. Finding meaning in the little things, and sharing what I discover along the way.</p><a class="button" href="/about/">A little about me {arrow()}</a><a class="text-link hero-secondary" href="/blog/">Read my writing <span aria-hidden="true">↓</span></a><div class="hero-footnote"><span class="small-line" aria-hidden="true"></span> Writing · Music · Everyday discoveries</div></div><figure class="hero-photo"><img src="{DATA['landscape']}" alt="Ammy sitting on a rocky overlook, looking out across the water" width="1600" height="1280" fetchpriority="high"><figcaption>A little room to pause. A little more to discover.</figcaption><span class="photo-corner" aria-hidden="true">AL</span></figure></section>
-    <div class="intro-strip wrap"><span class="eyebrow">Welcome to my corner<br>of the internet</span><p>I hope to use this space to share my thoughts, document my growth, and build deeper connections with the world.<br><span>I’m glad you’re here.</span></p><span class="intro-star" aria-hidden="true">✳</span></div>
-    <section class="writing-section wrap"><div class="section-heading"><div><p class="eyebrow">Notes along the way</p><h2>From my journal<span class="brand-dot">.</span></h2></div><a class="text-link" href="/blog/">All my writing {arrow()}</a></div><div class="post-grid">{''.join(post_card(p) for p in POSTS[:3])}</div></section>
-    <section class="music-feature wrap"><div class="music-photo"><img src="/assets/images/8c33ca86a2-9A723BA5-6BAD-4A8E-A196-6A9269BE5A39_Original-1024x683-632x427.webp" alt="Ammy playing the viola at a performance" width="632" height="427" loading="lazy"></div><div class="music-copy"><p class="eyebrow">Another way to tell a story</p><h2>A life with<br><em>music in it.</em></h2><p>From flute and viola to dizi and piano, music has been a constant thread in my life. Come listen to a few of my performances.</p><a class="button button-light" href="/media/">Explore my music {arrow()}</a></div></section>
-    <section class="hello-section wrap"><p class="eyebrow">A conversation starts somewhere</p><h2>Let’s connect<span class="brand-dot">.</span></h2><p>A question, a shared interest, or just a hello.<br>I’d love to hear from you.</p><a class="text-link" href="/contact/">Say hello {arrow()}</a></section>'''
+    featured=[p for p in PROJECTS if p.get('featured')]
+    body=f"""<section class="data-hero wrap"><div class="data-hero-copy"><p class="eyebrow"><span class="academic-dot" aria-hidden="true"></span> Duke University · Data science</p><h1>Curiosity,<br><em>put to work.</em></h1><p class="data-hero-intro">I’m Ammy, a data science student at Duke University. I explore questions through machine learning, statistical analysis, and the systems that make data useful.</p><div class="hero-actions"><a class="button" href="/projects/">Explore my projects {arrow()}</a><a class="text-link" href="https://github.com/ammylin">GitHub {arrow()}</a></div><p class="data-hero-note">A mathematical foundation. A human perspective.</p></div><aside class="portfolio-profile" aria-label="About Ammy"><div class="profile-topline"><span class="eyebrow">Hello, I’m Ammy</span><span aria-hidden="true">AL / 01</span></div><img src="{DATA['portrait']}" alt="Portrait of Ammy Lin" width="291" height="331" fetchpriority="high"><div class="profile-caption"><span>Duke University</span><p>Data science student</p></div><div class="profile-bottom"><span>Previously at Carleton College</span><p>Mathematics · Chinese · Music</p></div></aside></section>
+    <div class="focus-strip wrap"><p class="eyebrow">Areas I’m exploring</p><span>Machine learning</span><span>Data engineering</span><span>Statistical analysis</span><span>Data ethics</span></div>
+    <section class="selected-projects wrap"><div class="section-heading"><div><p class="eyebrow">From question to investigation</p><h2>Selected projects<span class="brand-dot">.</span></h2></div><a class="text-link" href="/projects/">All projects {arrow()}</a></div><div class="project-grid">{''.join(project_card(p) for p in featured)}</div></section>
+    <section class="background-note wrap"><p class="eyebrow">A little context</p><div><h2>Different disciplines.<br><em>Connected thinking.</em></h2><p>Before Duke, I studied mathematics and Chinese at Carleton College, with a minor in music performance. That mix of analytical and creative work is part of what I bring to learning data science.</p><a class="text-link" href="/about/">More about me {arrow()}</a></div></section>
+    <section class="beyond-teaser wrap"><div><p class="eyebrow">Beyond the notebook</p><h2>There’s more<br><em>to the story.</em></h2></div><div><p>I’m also a musician and an occasional writer. You’ll find performances, earlier essays, and a few milestones in one place.</p><a class="text-link" href="/beyond/">Explore beyond data {arrow()}</a></div></section>
+    <section class="hello-section wrap"><p class="eyebrow">Let’s compare notes</p><h2>Good questions<br>start conversations<span class="brand-dot">.</span></h2><p>A project idea, a shared interest, or something you’re exploring.<br>I’d love to hear from you.</p><a class="text-link" href="/contact/">Get in touch {arrow()}</a></section>"""
     page('/','',body)
 
 def build_about():
@@ -90,56 +149,28 @@ def build_about():
     values=text[split:] if split>=0 else ''
     body=f'''<section class="wrap">{page_intro('A little about me','Always learning.<br><em>Always becoming.</em>')}<div class="about-opening"><div class="prose">{opening}</div><figure class="portrait"><img src="{DATA['portrait']}" alt="Portrait of Ammy Lin" width="291" height="331"><figcaption>Hi, I’m Ammy. It’s lovely to meet you.</figcaption></figure></div><div class="prose values-section">{values}</div></section>'''
     page('/about/','About',body,active='/about/')
-    page('/about-me/','About',f'<section class="wrap narrow">{page_intro("Welcome","Hello, I’m Ammy.")}<p class="page-deck">An explorer, musician, and lifelong learner.</p><a class="button" href="/about/">Read my biography {arrow()}</a></section>',active='/about/')
 
-def build_blog():
-    body=f'<section class="wrap">{page_intro("The journal","Thoughts, stories,<br><em>and small discoveries.</em>","Reflections on growth, gratitude, and the everyday moments that stay with me.")}<div class="blog-toolbar"><span>{len(POSTS)} stories, and counting</span><label class="search-label" for="story-search">Find a story<input id="story-search" type="search" placeholder="Search my writing…" autocomplete="off"></label></div><div class="post-grid blog-grid" id="stories">'+''.join(post_card(p) for p in POSTS)+'</div><p id="search-empty" class="empty-state" hidden>No stories found. Try another word.</p><p id="search-status" class="sr-only" role="status" aria-live="polite"></p></section>'
-    page('/blog/','Writing',body,active='/blog/')
-    for n,p in enumerate(POSTS):
+def build_articles():
+    for p in POSTS:
         related=[q for q in POSTS if q['slug']!=p['slug']][:2]
-        body=f'''<article class="wrap article-wrap"><a class="text-link back-link" href="/blog/">← All writing</a><header class="article-header"><p class="eyebrow">Notes along the way</p><h1>{E(p['title'])}</h1><p class="post-meta"><time datetime="{p['date']}">{date_label(p['date'])}</time><span>{p['minutes']} min read</span></p></header><div class="prose article-body">{content(p['slug'])}</div><div class="article-signoff"><p>Thanks for reading.</p><span>— Ammy</span><a class="text-link rss-link" href="/feed.xml">Follow along with RSS {arrow()}</a></div><section class="related"><p class="eyebrow">A little more to explore</p><div class="related-grid">{''.join(f'<a href="/{q["slug"]}/">{E(q["title"])} {arrow()}</a>' for q in related)}</div></section></article>'''
-        page('/'+p['slug']+'/',p['title'],body,active='/blog/',description=p['excerpt'],image=p['image'],article=p)
-
-def build_music():
-    groups=[]
-    for group in dict.fromkeys(v['group'] for v in DATA['videos']):
-        cards=[]
-        for v in DATA['videos']:
-            if v['group']!=group: continue
-            thumb=f'<img src="{v["thumbnail"]}" alt="" width="480" height="360" loading="lazy">' if v.get('thumbnail') else ''
-            cards.append(f'''<article class="video-card"><a class="video-poster" href="{E(v['url'])}" aria-label="Watch {E(v['title'],quote=True)} on YouTube">{thumb}<span class="play-icon" aria-hidden="true">▶</span></a><h3>{E(v['title'])}</h3><a class="video-fallback" href="{E(v['url'])}">Watch on YouTube {arrow()}</a></article>''')
-        groups.append(f'<section class="instrument-section" id="{group.lower()}"><div class="instrument-heading"><h2>{group}</h2><span>{len(cards):02d} performances</span></div><div class="video-grid">'+''.join(cards)+'</div></section>')
-    body=f'''<section class="wrap">{page_intro('In good company','A few notes.<br><em>A lot of heart.</em>', 'A selection of my musical performances. Thank you to everyone who has supported me along the way.')}<div class="music-toolbar"><div class="instrument-links"><a href="#flute">Flute</a><a href="#dizi">Dizi</a><a href="#piano">Piano</a></div><a class="text-link" href="https://www.youtube.com/@ammy-lin">My YouTube channel {arrow()}</a></div>{''.join(groups)}<div class="page-callout"><h2>Music is better together.</h2><p>Explore lessons or get in touch about a performance.</p><a class="button" href="/lessons/">About lessons {arrow()}</a><a class="text-link" href="/events-gigs/">Events &amp; gigs {arrow()}</a></div></section>'''
-    page('/media/','Music & performances',body,active='/media/')
-
-def build_lessons():
-    text=content('lessons')
-    text=text.replace('Interested? Please fill out the form below and I will get in contact with you promptly.', 'Interested? Please fill out the lesson interest form and I will get in contact with you promptly.')
-    body=f'<section class="wrap narrow">{page_intro("Room to grow","Make room<br><em>for music.</em>","Flute and viola lessons, shaped around your goals.")}<div class="prose lessons-body">{text}</div><div class="page-callout"><p>Questions about lessons?</p><a class="text-link" href="mailto:{E(CONFIG["email"])}">Send me an email {arrow()}</a></div></section>'
-    page('/lessons/','Music lessons',body,active='/lessons/')
-
-def build_press():
-    body=f'<section class="wrap narrow">{page_intro("In the news","Stories from<br><em>elsewhere.</em>","A collection of features, conversations, and milestones over the years.")}<div class="prose press-list">{content("press")}</div></section>'
-    page('/press/','Press',body,active='/press/')
+        body=f'''<article class="wrap article-wrap"><a class="text-link back-link" href="/beyond/#writing">← All writing</a><header class="article-header"><p class="eyebrow">Notes along the way</p><h1>{E(p['title'])}</h1><p class="post-meta"><time datetime="{p['date']}">{date_label(p['date'])}</time><span>{p['minutes']} min read</span></p></header><div class="prose article-body">{content(p['slug'])}</div><div class="article-signoff"><p>Thanks for reading.</p><span>— Ammy</span><a class="text-link rss-link" href="/feed.xml">Follow along with RSS {arrow()}</a></div><section class="related"><p class="eyebrow">A little more to explore</p><div class="related-grid">{''.join(f'<a href="/{q["slug"]}/">{E(q["title"])} {arrow()}</a>' for q in related)}</div></section></article>'''
+        page('/'+p['slug']+'/',p['title'],body,active='/beyond/',description=p['excerpt'],image=p['image'],article=p)
 
 def build_contact():
     email=E(CONFIG['email'])
-    body=f'''<section class="wrap contact-page">{page_intro('Good things start with hello','Let’s make<br><em>a connection.</em>', 'A question, a musical collaboration, or something that made you think of me. My inbox is open.')}<a class="email-link" href="mailto:{email}">{email} {arrow()}</a><div class="contact-options"><div><p class="eyebrow">Interested in lessons?</p><p>Tell me a little about yourself and what you’d like to learn.</p><a class="text-link" href="https://forms.gle/bvyfdC7ao5cuSAj58">Lesson interest form {arrow()}</a></div><div><p class="eyebrow">Come listen</p><p>Find more of my musical performances on YouTube.</p><a class="text-link" href="https://www.youtube.com/@ammy-lin">Visit my channel {arrow()}</a></div></div></section>'''
+    body=f"""<section class="wrap contact-page">{page_intro('Let’s compare notes','A good question.<br><em>A new connection.</em>', 'A project idea, a data science conversation, or a shared curiosity. I’d love to hear from you.')}<a class="email-link" href="mailto:{email}">{email} {arrow()}</a><div class="contact-options"><div><p class="eyebrow">Explore the work</p><p>Find project code, experiments, and coursework on GitHub.</p><a class="text-link" href="https://github.com/ammylin">My GitHub profile {arrow()}</a></div><div><p class="eyebrow">Music &amp; everything else</p><p>Performances, earlier writing, and lesson inquiries have a home beyond the data projects.</p><a class="text-link" href="/beyond/">Beyond data {arrow()}</a></div></div></section>"""
     page('/contact/','Contact',body,active='/contact/')
-
-def build_events():
-    page('/events-gigs/','Events & gigs',f'''<section class="wrap narrow">{page_intro('Out in the world','Events <em>&amp; gigs.</em>', 'This page is taking shape.')}<div class="page-callout"><h2>Let’s talk music.</h2><p>For performance inquiries or information about upcoming events, please get in touch.</p><a class="button" href="mailto:{E(CONFIG['email'])}">Contact Ammy {arrow()}</a><a class="text-link" href="/media/">Listen to past performances {arrow()}</a></div></section>''')
 
 def build_feeds():
     sitemap=ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
     for path in BUILT:
-        if path=='/404.html' or path=='/about-me/': continue
+        if path in {'/404.html','/about-me/','/blog/','/media/','/lessons/','/press/','/events-gigs/'}: continue
         url=ET.SubElement(sitemap,'url'); ET.SubElement(url,'loc').text=BASE+path
     ET.indent(sitemap)
     (OUT/'sitemap.xml').write_bytes(ET.tostring(sitemap,encoding='utf-8',xml_declaration=True))
     (OUT/'robots.txt').write_text('User-agent: *\nDisallow: /\n' if CONFIG.get('preview') else f'User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n')
     rss=ET.Element('rss',version='2.0'); channel=ET.SubElement(rss,'channel')
-    for tag,val in [('title','Ammy Lin — Notes along the way'),('link',BASE+'/blog/'),('description',CONFIG['description']),('language','en-us')]: ET.SubElement(channel,tag).text=val
+    for tag,val in [('title','Ammy Lin — Notes along the way'),('link',BASE+'/beyond/#writing'),('description',CONFIG['description']),('language','en-us')]: ET.SubElement(channel,tag).text=val
     for p in POSTS:
         item=ET.SubElement(channel,'item')
         for tag,val in [('title',p['title']),('link',BASE+'/'+p['slug']+'/'),('guid',BASE+'/'+p['slug']+'/'),('description',p['excerpt']),('pubDate',datetime.fromisoformat(p['date']).strftime('%a, %d %b %Y %H:%M:%S +0000'))]: ET.SubElement(item,tag).text=val
@@ -154,8 +185,8 @@ def main():
     OUT.mkdir()
     shutil.copytree(ROOT/'assets',OUT/'assets')
     (OUT/'.nojekyll').touch()
-    home(); build_about(); build_blog(); build_music(); build_lessons(); build_press(); build_contact(); build_events()
-    page('/404.html','Page not found',f'<section class="wrap narrow">{page_intro("A small detour","A little <em>lost?</em>","This page isn’t here, but there’s plenty more to explore.")}<a class="button" href="/">Back home {arrow()}</a><a class="text-link" href="/blog/">Explore my writing {arrow()}</a></section>')
+    home(); build_projects(); build_about(); build_articles(); build_beyond(); build_contact(); build_legacy_routes()
+    page('/404.html','Page not found',f'<section class="wrap narrow">{page_intro("A small detour","A little <em>lost?</em>","This page isn’t here, but there’s plenty more to explore.")}<a class="button" href="/">Back home {arrow()}</a><a class="text-link" href="/projects/">Explore my projects {arrow()}</a></section>')
     build_feeds()
     if not CONFIG.get('preview'):
         hostname=urlparse(BASE).hostname

@@ -15,19 +15,21 @@ if (menuButton && navigation) {
   });
 }
 
-const search = document.querySelector('#story-search');
-if (search) {
-  const stories = [...document.querySelectorAll('#stories .post-card')];
-  search.addEventListener('input', () => {
-    const query = search.value.trim().toLocaleLowerCase();
-    let count = 0;
-    stories.forEach((story) => {
-      const matches = story.textContent.toLocaleLowerCase().includes(query);
-      story.hidden = !matches;
-      if (matches) count++;
+const projectFilters = [...document.querySelectorAll('[data-project-filter]')];
+if (projectFilters.length) {
+  const projects = [...document.querySelectorAll('#project-list [data-project-category]')];
+  const status = document.querySelector('#project-count');
+  projectFilters.forEach((button) => {
+    button.addEventListener('click', () => {
+      const category = button.dataset.projectFilter;
+      projectFilters.forEach((filter) => filter.setAttribute('aria-pressed', String(filter === button)));
+      let count = 0;
+      projects.forEach((project) => {
+        const matches = category === 'all' || project.dataset.projectCategory === category;
+        project.hidden = !matches;
+        if (matches) count++;
+      });
+      status.textContent = `${count} ${count === 1 ? 'project' : 'projects'}`;
     });
-    document.querySelector('#search-empty').hidden = count !== 0;
-    document.querySelector('#search-status').textContent = `${count} ${count === 1 ? 'story' : 'stories'} found`;
   });
 }
-
