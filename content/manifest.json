@@ -1,0 +1,210 @@
+{
+  "pages": [
+    {
+      "slug": "events-gigs",
+      "title": "Events & Gigs",
+      "date": "2024-07-13T16:29:05",
+      "source_url": "https://ammylin.com/events-gigs/"
+    },
+    {
+      "slug": "press",
+      "title": "Press",
+      "date": "2024-07-13T16:10:20",
+      "source_url": "https://ammylin.com/press/"
+    },
+    {
+      "slug": "lessons",
+      "title": "Lessons",
+      "date": "2024-07-12T23:16:25",
+      "source_url": "https://ammylin.com/lessons/"
+    },
+    {
+      "slug": "media",
+      "title": "Media",
+      "date": "2023-07-21T22:55:00",
+      "source_url": "https://ammylin.com/media/"
+    },
+    {
+      "slug": "about",
+      "title": "Biography",
+      "date": "2021-01-01T23:01:44",
+      "source_url": "https://ammylin.com/about/"
+    },
+    {
+      "slug": "about-me",
+      "title": "About Me",
+      "date": "2021-01-01T22:55:07",
+      "source_url": "https://ammylin.com/"
+    }
+  ],
+  "posts": [
+    {
+      "slug": "fight-for-that-cup-of-ice-cream",
+      "title": "Fight for That Cup of Ice Cream!",
+      "date": "2024-11-12T03:21:58",
+      "source_url": "https://ammylin.com/fight-for-that-cup-of-ice-cream/",
+      "image": "/assets/images/d66fcddef7-img_6986-2-1.webp",
+      "excerpt": "As the air turns cooler and crisper, and the moisture-laden leaves fall to hug the earth, I often find myself remembering a warmer day—a day when the wind felt like a hug and the…",
+      "minutes": 2
+    },
+    {
+      "slug": "mindloops-and-mooncakes",
+      "title": "Mindloops and Mooncakes",
+      "date": "2024-09-18T03:20:51",
+      "source_url": "https://ammylin.com/mindloops-and-mooncakes/",
+      "image": "/assets/images/23da8f3764-Blog-Thumbnail.webp",
+      "excerpt": "Resting is like leaving your favorite book on the shelf to collect dust: when you revisit it, you fall in love yet again with how the sentences flow together on the page and…",
+      "minutes": 4
+    },
+    {
+      "slug": "homebound-happiness-in-july",
+      "title": "Homebound Happiness in July",
+      "date": "2024-07-16T08:04:31",
+      "source_url": "https://ammylin.com/homebound-happiness-in-july/",
+      "image": "/assets/images/6d6605a3ae-blog-thumbnail-1.webp",
+      "excerpt": "Summertime at home sometimes feels like a blur of days and weeks, with a few novel experiences and many mundane moments in between. This week was no different, although I’d say…",
+      "minutes": 6
+    },
+    {
+      "slug": "rediscoveries-childhood-essays",
+      "title": "Rediscoveries & Childhood Essays",
+      "date": "2024-07-04T17:03:54",
+      "source_url": "https://ammylin.com/rediscoveries-childhood-essays/",
+      "image": "/assets/images/085f5b8cde-Add-a-heading.webp",
+      "excerpt": "Hello again, friends! Long time no see. A lot has happened since I last posted something on here, with the most recent big thing being that I graduated cum laude with mathematics…",
+      "minutes": 5
+    },
+    {
+      "slug": "the-value-of-the-holiday-season",
+      "title": "The Value of the Holiday Season",
+      "date": "2021-12-26T19:56:59",
+      "source_url": "https://ammylin.com/the-value-of-the-holiday-season/",
+      "image": "/assets/images/b85489dae5-Blog-Thumbnail.webp",
+      "excerpt": "After the thrill of Halloween subsides, we flip the calendar to a new month and a new season: the holiday season. Charmed by the cooling temperatures and crisp, autumnal air, we…",
+      "minutes": 2
+    },
+    {
+      "slug": "monthly-musings-march-2021",
+      "title": "Monthly Musings: March 2021",
+      "date": "2021-04-12T22:19:10",
+      "source_url": "https://ammylin.com/monthly-musings-march-2021/",
+      "image": "/assets/images/f71facb7e6-Blog-Thumbnail.webp",
+      "excerpt": "Hello there! Welcome back to my blog and my first post in a while. I’ve been all over the place recently, which I’ll get into more later in this post, but that’s a reason why I…",
+      "minutes": 5
+    },
+    {
+      "slug": "what-i-learned-from-recording-one-second-every-day",
+      "title": "What I Learned From Recording One Second Every Day",
+      "date": "2021-03-06T04:23:11",
+      "source_url": "https://ammylin.com/what-i-learned-from-recording-one-second-every-day/",
+      "image": "/assets/images/252efa773b-Blog-Thumbnail.webp",
+      "excerpt": "The past always finds a way to come back to me, making itself a home within my thoughts. Some days, I find myself listening to old playlists of songs and pieces that remind me of…",
+      "minutes": 4
+    },
+    {
+      "slug": "welcome-to-my-blog",
+      "title": "Welcome to My Blog",
+      "date": "2021-02-13T00:57:59",
+      "source_url": "https://ammylin.com/welcome-to-my-blog/",
+      "image": "/assets/images/79be382f37-Blog-Thumbnail.webp",
+      "excerpt": "Hey, hello, and welcome to my blog! Before I get started on why I started this blog, I wanted to thank you for visiting my website and coming along on my journey through life. So,…",
+      "minutes": 3
+    }
+  ],
+  "portrait": "/assets/images/2f551f9e4e-Headshot-820x1024-291x331.webp",
+  "landscape": "/assets/images/686ba891a1-47FEA5BE-B685-4E2A-AB50-2214114B12E5-1.webp",
+  "favicon": "/assets/images/3c22074826-cropped-Favicon-60x60.webp",
+  "videos": [
+    {
+      "id": "20O1uYqYFaY",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=20O1uYqYFaY",
+      "title": "Jules Mouquet  - La Flute de Pan (II. Pan et les oiseaux)",
+      "thumbnail": "/assets/images/f26c3f4fd6-hqdefault.webp"
+    },
+    {
+      "id": "jEu6kmZmnBw",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=jEu6kmZmnBw",
+      "title": "Johann Sebastian Bach - Partita in A minor for Solo Flute (I. Allemande)",
+      "thumbnail": "/assets/images/712cf4673a-hqdefault.webp"
+    },
+    {
+      "id": "3dMctCbdDu8",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=3dMctCbdDu8",
+      "title": "Carl Reinecke  - Sonata \"Undine\" Op. 167 (I. Allegro)",
+      "thumbnail": "/assets/images/44a5e2182d-hqdefault.webp"
+    },
+    {
+      "id": "ETQEXxvF1sE",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=ETQEXxvF1sE",
+      "title": "Benjamin Godard - Suite de trois morceaux, Op. 116 (II. Idylle)",
+      "thumbnail": "/assets/images/0d49295f5f-hqdefault.webp"
+    },
+    {
+      "id": "yxBEVBvJZDI",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=yxBEVBvJZDI",
+      "title": "Benjamin Godard - Suite de trois morceaux, Op. 116 (I. Allegretto)",
+      "thumbnail": "/assets/images/920f68e665-hqdefault.webp"
+    },
+    {
+      "id": "HZFq0ZA2zHc",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=HZFq0ZA2zHc",
+      "title": "Astor Piazzolla - Libertango (arr. Matteo Del Soldà)",
+      "thumbnail": "/assets/images/29c063a9fe-hqdefault.webp"
+    },
+    {
+      "id": "ce_vtbnGB0w",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=ce_vtbnGB0w",
+      "title": "Bohuslav Martinů - Sonata for Flute, Violin, and Piano, H. 254 (I. Allegro poco moderato)",
+      "thumbnail": "/assets/images/4dc1982493-hqdefault.webp"
+    },
+    {
+      "id": "-A7gGuDa4b4",
+      "group": "Flute",
+      "url": "https://www.youtube.com/watch?v=-A7gGuDa4b4",
+      "title": "Astor Piazzolla - Los pájaros perdidos (arr. Matteo Del Soldà)",
+      "thumbnail": "/assets/images/965e4cf7af-hqdefault.webp"
+    },
+    {
+      "id": "1lbkYMOTau4",
+      "group": "Dizi",
+      "url": "https://www.youtube.com/watch?v=1lbkYMOTau4",
+      "title": "江先渭 - 姑苏行 (A Trip to Suzhou)",
+      "thumbnail": "/assets/images/cab5b33f63-hqdefault.webp"
+    },
+    {
+      "id": "zRCSSGoZhmg",
+      "group": "Dizi",
+      "url": "https://www.youtube.com/watch?v=zRCSSGoZhmg",
+      "title": "荫中鸟 (Birds Amidst Tree Shadows), featuring Masters Zhu Changyao, erhu; Gao Hong, pipa",
+      "thumbnail": "/assets/images/df496bb158-hqdefault.webp"
+    },
+    {
+      "id": "raWLFsM0D7M",
+      "group": "Dizi",
+      "url": "https://www.youtube.com/watch?v=raWLFsM0D7M",
+      "title": "五梆子",
+      "thumbnail": "/assets/images/cb30301882-hqdefault.webp"
+    },
+    {
+      "id": "Cqpy6uVFZkI",
+      "group": "Piano",
+      "url": "https://www.youtube.com/watch?v=Cqpy6uVFZkI",
+      "title": "Frédéric Chopin - Raindrop Prelude (Op. 28, No. 15)",
+      "thumbnail": "/assets/images/e35a9403bd-hqdefault.webp"
+    },
+    {
+      "id": "kIgKdgIruco",
+      "group": "Piano",
+      "url": "https://www.youtube.com/watch?v=kIgKdgIruco",
+      "title": "Frédéric Chopin - Waltz in C-sharp minor (Op. 64, No. 2)",
+      "thumbnail": "/assets/images/53af6125a0-hqdefault.webp"
+    }
+  ]
+}
