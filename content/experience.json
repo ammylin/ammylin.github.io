@@ -4,22 +4,34 @@
       "organization": "TRUST Lab",
       "title": "Graduate Research Assistant",
       "dates": "August 2026–present",
-      "summary": "I study when negotiating language-model agents say one thing and do another. Using the Catanist game environment, I compare public statements with recorded actions and test how instructions, competition, and the mix of agents affect that behavior.",
-      "tags": ["LLM agents", "Evaluation", "Controlled experiments"]
+      "summary": "At TRUST Lab, I study how language-model agents’ statements compare with their actions while negotiating in the game environment Catanist. I’m developing ways to measure those differences and running experiments to see how they change with instructions, competition, and the mix of agents.",
+      "tags": [
+        "LLM agents",
+        "Evaluation",
+        "Controlled experiments"
+      ]
     },
     {
       "organization": "Duke University · IDS 706",
       "title": "Graduate Teaching Assistant",
       "dates": "August 2026–present",
-      "summary": "I support Data Engineering Systems through office hours, grading, and in-class demonstrations. Topics range from SQL and Airflow to reproducible Python projects, GitHub Actions, Docker, and database design.",
-      "tags": ["Data engineering", "Teaching", "Reproducibility"]
+      "summary": "I’m a TA for IDS 706: Data Engineering Systems. I hold weekly office hours, help with grading, and lead demonstrations on Python project setup, GitHub Actions, Docker, and database design. The course also covers SQL, cloud ETL, Airflow, PySpark, and Kafka.",
+      "tags": [
+        "Data engineering",
+        "Teaching",
+        "Reproducibility"
+      ]
     },
     {
       "organization": "Liberty Mutual Insurance · Boston",
       "title": "Graduate Data Science Intern",
       "dates": "June–August 2026",
-      "summary": "I combined features from claim photos with a structured-data model using LightGBM to improve early total-loss detection. My work included leakage-safe validation, Optuna tuning, and ablation and SHAP analyses to understand where the image features helped—and where the model’s limits remained.",
-      "tags": ["Multimodal ML", "LightGBM", "Model validation"]
+      "summary": "I spent the summer of 2026 at Liberty Mutual in Boston. My project combined features from claim photos with a structured-data score in a LightGBM model to improve early total-loss detection. I used Optuna to tune the model and worked on validation that avoided data leakage. Ablation studies and SHAP analyses helped me check where the photo features added useful information and understand the model’s limits.",
+      "tags": [
+        "Multimodal ML",
+        "LightGBM",
+        "Model validation"
+      ]
     }
   ],
   "earlier": [
@@ -27,25 +39,25 @@
       "organization": "Central Lakes Learning Center",
       "title": "Manager & Instructor",
       "dates": "2024–2025",
-      "summary": "Taught piano and violin, tutored composition and geometry, and coordinated schedules and communication with students and families."
+      "summary": "I taught piano and violin, tutored students in composition and geometry, and helped manage the center. That included scheduling and staying in touch with students and their families."
     },
     {
       "organization": "Carleton College",
       "title": "Writing Consultant, Speech Coach & Math Tutor",
       "dates": "2022–2024 · roles held across this period",
-      "summary": "Worked one-on-one with students on writing, public speaking, calculus, and linear algebra. As a lead writing consultant, I also helped train and mentor fellow consultants."
+      "summary": "At Carleton, I worked one-on-one with students on writing, public speaking, calculus, and linear algebra. As a lead writing consultant, I also helped train and mentor other consultants."
     },
     {
       "organization": "Ed100",
       "title": "Engagement & Data Analyst Intern",
       "dates": "2022–2023",
-      "summary": "Researched education policy, analyzed quantitative and qualitative data, and created published data visualizations to make education information more accessible."
+      "summary": "I researched education policy and used quantitative and qualitative data to update lessons on Ed100.org. I also created data visualizations for the site and helped facilitate a student discussion group."
     },
     {
       "organization": "Phi Beta Kappa Alumni Association of Greater Houston",
       "title": "Archival Research & Fundraising Intern",
       "dates": "2023–2024",
-      "summary": "Combined archival research at Rice University with donor-data analysis and built a spreadsheet of more than 12,000 prospective donors."
+      "summary": "This internship involved archival research at Rice University and donor-data analysis. I also put together a spreadsheet of more than 12,000 prospective donors to help organize fundraising research."
     }
   ]
 }

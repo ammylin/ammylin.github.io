@@ -36,9 +36,11 @@ The public address in `site.json` is `https://ammylin.com`, with `preview: false
 
 To add a post, create `content/your-post-slug.html` and add its metadata to the `posts` array in `content/manifest.json`. Keep the newest post first. Rebuild and run the checks. You can also ask Codex to do this in plain English.
 
+When editing copy, use Ammy’s original essays and About page as the voice reference. Keep her original writing intact unless she asks for edits. New copy should be conversational and specific, with varied sentence lengths and few em dashes. Avoid slogans, repeated sentence patterns, and invented feelings or personal takeaways. Keep project results, limitations, and team contributions accurate.
+
 ## Site structure
 
-The main navigation is **Projects**, **About**, and **Beyond data**, plus contact. Data science projects lead the homepage. `/projects/` has category filters and individual project summaries with links to the original work.
+The main navigation is **Projects**, **About**, and **Music & more**, plus contact. Data science projects lead the homepage. `/projects/` has category filters and individual project summaries with links to the original work.
 
 `/beyond/` gathers musical performances, teaching and lesson inquiries, the earlier writing archive, and press coverage in one page. Additional material expands with native browser disclosure controls. Earlier writing is presented as an archive rather than a currently updated feed. Individual post URLs remain available for new and old essays.
 

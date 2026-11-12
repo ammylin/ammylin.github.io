@@ -1,145 +1,145 @@
 [
   {
     "slug": "housing-mobility",
-    "title": "Housing policy & residential choice",
+    "title": "Housing vouchers and neighborhood choice",
     "category": "Statistical analysis",
     "year": "2026",
     "featured": true,
-    "summary": "Evaluating how ZIP code-level rent standards relate to housing voucher concentration and access to neighborhoods.",
+    "summary": "We studied a change in how housing voucher rent limits are set, and whether it affected where voucher households lived.",
     "tools": [
       "Python",
       "Difference-in-differences",
       "GeoPandas"
     ],
-    "context": "Collaborative policy-analysis project",
-    "question": "How did the 2018 Small Area Fair Market Rent policy change the residential concentration of Housing Choice Voucher households?",
+    "context": "Team project in policy analysis",
+    "question": "In 2018, the Small Area Fair Market Rent policy changed how rent limits were set for housing vouchers. Did that change where Housing Choice Voucher households were concentrated?",
     "approach": [
-      "Constructed a 2014–2022 census-tract panel from HUD housing data and compared Dallas County with Harris County.",
-      "Used difference-in-differences with tract and year fixed effects, alongside event-study checks and geospatial analysis.",
-      "Examined changes in voucher concentration and patterns across neighborhood racial composition and poverty."
+      "Built a census-tract panel covering 2014 to 2022 using HUD housing data, then compared Dallas County with Harris County.",
+      "Used difference-in-differences with tract and year fixed effects. We also checked trends with an event study and mapped the data with GeoPandas.",
+      "Looked at voucher concentration alongside neighborhood racial composition and poverty."
     ],
-    "takeaway": "The analysis finds an association between the policy change and lower voucher concentration in the treatment area. Interpreting that pattern requires looking beyond a single estimate to pre-policy trends and the limits of the available data.",
-    "limitation": "Pre-policy trend differences complicate causal interpretation. HUD suppresses small household counts, and the data do not track where individual households relocate.",
+    "takeaway": "We found an association between the policy change and lower voucher concentration in the treatment area. The trends before the policy were different across the two counties, though, which makes it difficult to say how much of the change was caused by the policy itself.",
+    "limitation": "HUD suppresses small household counts, and these data don’t tell us where individual households moved. Along with the differences in pre-policy trends, those gaps limit what we can conclude.",
     "credits": "Team: Lingyue Hao, He Jiang, Ammy Lin, Myla Simmons, and Anvita Suresh.",
     "github": "https://github.com/ammylin/safmr-housing-mobility-analysis",
     "image": "/assets/images/housing-event-study.webp",
     "image_alt": "Repository event-study chart showing estimated treatment effects by year with uncertainty intervals",
-    "image_caption": "Event-study estimates from the project repository. Read the notebooks for the model specification and interpretation.",
+    "image_caption": "Event-study estimates from our analysis. The notebooks explain the model and how we interpreted the results.",
     "image_source": "https://github.com/ammylin/safmr-housing-mobility-analysis/blob/main/outputs/event_study_coefficients_by_year.png"
   },
   {
     "slug": "sparse-neural-networks",
-    "title": "Learning with fewer connections",
+    "title": "Training sparse neural networks",
     "category": "Machine learning",
     "year": "2026",
     "featured": true,
-    "summary": "Comparing static sparsity, SET, and RigL to study the relationship between neural network capacity and predictive performance.",
+    "summary": "How many neural network connections do we actually need? We compared three sparse training methods on CIFAR-10.",
     "tools": [
       "PyTorch",
       "ResNet-20",
       "CIFAR-10"
     ],
     "context": "Duke · ECE 685D / CS 675D team project",
-    "question": "How much can a neural network’s connectivity be reduced while retaining useful predictive performance?",
+    "question": "We wanted to see how much we could reduce a neural network’s connections while keeping its predictive accuracy. We also compared methods that keep the same connections with methods that change them during training.",
     "approach": [
-      "Compared fixed sparse masks, Sparse Evolutionary Training, and gradient-guided RigL on a CIFAR-style ResNet-20.",
-      "Evaluated 90%, 95%, and 98% sparsity under SGD with momentum and Adam.",
-      "Inspected accuracy curves, weight visualizations, and connectivity changes across the training runs."
+      "Compared fixed sparse masks, Sparse Evolutionary Training (SET), and gradient-guided RigL on a CIFAR-style ResNet-20.",
+      "Trained at 90%, 95%, and 98% sparsity, using both SGD with momentum and Adam.",
+      "Compared accuracy curves and weight visualizations, and looked at how connections changed during training."
     ],
-    "takeaway": "Static sparsity remained a competitive baseline, while RigL generally outperformed SET. Optimizer choice affected the comparison, and the highest sparsity level exposed clear capacity limits.",
-    "limitation": "These experiments used 15 training epochs, one model family, and CIFAR-10 without data augmentation. The comparisons describe this experimental setting rather than a universal ranking of sparsity methods.",
+    "takeaway": "Static sparsity was a competitive baseline in our experiments, and RigL generally did better than SET. The optimizer made a difference, too. At the highest sparsity level, the model had clearer limits on what it could learn.",
+    "limitation": "We used one model family and CIFAR-10, with no data augmentation and only 15 training epochs. These results describe those runs; they don’t establish which method would work best in other settings.",
     "credits": "Team: Ammy Lin, Tonantzin Real Rojas, and Anvita Suresh. Completed for Introduction to Deep Learning at Duke University.",
     "github": "https://github.com/ammylin/sparse-nn-training",
     "image": "/assets/images/sparse-training-comparison.webp",
     "image_alt": "Project bar chart comparing final test accuracy for static sparse, SET, and RigL training at three sparsity levels",
-    "image_caption": "A comparison figure from the project repository. The notebooks and final paper document the experimental setup.",
+    "image_caption": "Final test accuracy across methods and sparsity levels. Our notebooks and paper describe the training setup.",
     "image_source": "https://github.com/ammylin/sparse-nn-training/blob/main/img/task_3_all_methods_accuracy.png",
     "report": "https://github.com/ammylin/sparse-nn-training/blob/main/Final_Paper.pdf"
   },
   {
     "slug": "sparkify-music-recommendations",
-    "title": "From listening data to recommendations",
+    "title": "Sparkify: music recommendations",
     "category": "Data engineering",
     "year": "2025",
     "featured": true,
-    "summary": "An end-to-end music recommendation prototype connecting data ingestion, scheduled model workflows, and an interactive dashboard.",
+    "summary": "A music recommendation pipeline built with Airflow, PostgreSQL, and Streamlit. We used simulated listening data to test how the pieces worked together.",
     "tools": [
       "Airflow",
       "PostgreSQL",
       "Streamlit",
       "Python"
     ],
-    "context": "Collaborative data engineering project",
-    "role": "Exploratory analysis, Airflow DAGs, Streamlit dashboard, recommendation model, and team coordination, shared with teammates as documented in the repository.",
-    "question": "What does it take to turn track metadata and a small amount of listening history into a repeatable recommendation workflow?",
+    "context": "Team project in data engineering",
+    "role": "I worked on exploratory analysis, Airflow DAGs, the Streamlit dashboard, the recommendation model, and team coordination. These responsibilities were shared with teammates; the repository has the full breakdown.",
+    "question": "How do we turn track metadata and listening history into recommendations that can be updated on a schedule and viewed in a dashboard?",
     "approach": [
       "Combined public track metadata with generated users and synthetic listening events.",
-      "Used Airflow to orchestrate data ingestion, embedding generation, and recommendation updates in a PostgreSQL-backed pipeline.",
-      "Presented results through a Streamlit dashboard, with Python tests and workflow-level validation supporting the pipeline."
+      "Used Airflow to schedule data ingestion, embedding generation, and recommendation updates, with PostgreSQL for storage.",
+      "Built a Streamlit dashboard to view the recommendations and added Python tests and workflow checks."
     ],
-    "takeaway": "The prototype connects the modeling step with the engineering around it: data preparation, scheduled inference, persistence, validation, and a usable interface for exploring recommendations.",
-    "limitation": "Listening histories are simulated. The content-based model does not establish recommendation quality for real users, and the synchronous inference approach has not been validated for large user populations.",
-    "credits": "Team: Jordan, Aesha, Ammy, and Tonantzin. The repository documents shared responsibilities for the model, orchestration, dashboard, and testing.",
+    "takeaway": "The model was one part of the project. We also connected data preparation, scheduled inference, storage, and validation so the recommendations could make it into a dashboard people could use.",
+    "limitation": "The listening histories are simulated, so we haven’t shown how well these recommendations would work for real listeners. We also haven’t tested the synchronous inference approach with a large user population.",
+    "credits": "Team: Jordan, Aesha, Ammy, and Tonantzin. We shared work on the model, orchestration, dashboard, and testing; the repository lists our responsibilities.",
     "github": "https://github.com/ammylin/Sparkify-recommendation-pipeline_DE",
     "image": "/assets/images/sparkify-dashboard.webp",
     "image_alt": "Sparkify Streamlit dashboard displaying the recommendation results table",
-    "image_caption": "The recommendation dashboard from the project repository, using the prototype’s generated listening activity.",
+    "image_caption": "Our Streamlit recommendation dashboard, shown with the prototype’s generated listening activity.",
     "image_source": "https://github.com/ammylin/Sparkify-recommendation-pipeline_DE/blob/main/images/dashboard_recommendations.png",
     "demo": "https://www.youtube.com/watch?v=6mdhQYfkFKo",
     "demo_label": "Watch the walkthrough"
   },
   {
     "slug": "flood-risk-modeling",
-    "title": "Interpretable flood-risk modeling",
+    "title": "Modeling flood risk",
     "category": "Machine learning",
     "year": "2026",
     "featured": false,
-    "summary": "A synthetic-data proof of concept exploring predictive accuracy, robustness, and interpretable triggers for parametric flood insurance.",
+    "summary": "For this class project, we used synthetic data to compare flood-risk models and try out payout rules for parametric insurance.",
     "tools": [
       "XGBoost",
       "SHAP",
       "Scikit-learn"
     ],
     "context": "Duke · IDS 705 team project",
-    "role": "Project Manager and Risk Strategist, as documented in the project’s contributor roles.",
-    "question": "How can a flood-risk model balance predictive performance with interpretable and robust payout-trigger rules?",
+    "role": "I was the Project Manager and Risk Strategist. The repository lists each team member’s role.",
+    "question": "For insurance that pays out when specified conditions are met, how do we choose rules that are understandable and reliable? We used a flood-risk example to look at that question alongside model accuracy.",
     "approach": [
-      "Benchmarked linear regression, XGBoost, and sparse optimal decision trees across 20 environmental, infrastructure, land-use, and governance features.",
-      "Explored feature importance with SHAP and evaluated sensitivity to reporting bias and shifted feature distributions.",
-      "Simulated tiered payout rules and compared trigger thresholds for different stakeholder priorities."
+      "Compared linear regression, XGBoost, and sparse optimal decision trees using 20 features describing the environment, infrastructure, land use, and governance.",
+      "Used SHAP to examine feature importance, then tested sensitivity to reporting bias and changes in feature distributions.",
+      "Simulated tiered payout rules and compared thresholds for different stakeholder priorities."
     ],
-    "takeaway": "The proof of concept makes the tradeoffs between accuracy, interpretability, data quality, and stakeholder priorities explicit. It connects model evaluation to the decisions that a predictive system might support.",
-    "limitation": "This project uses synthetic data. Its feature rankings and payout rules are experimental and require validation on credible real-world data before supporting insurance or disaster-response decisions.",
+    "takeaway": "We compared models alongside the payout rules they might support. The simulations also let us try different thresholds depending on which stakeholder priorities we wanted to emphasize.",
+    "limitation": "All of the data are synthetic. The feature rankings and payout rules are experimental, and would need to be checked against credible real-world data before being used for insurance or disaster response.",
     "credits": "Team: Lingyue Hao, He Jiang, Ammy Lin, Myla Simmons, and Anvita Suresh. Completed for IDS 705: Machine Learning at Duke University.",
     "github": "https://github.com/ammylin/flood-risk-modeling",
     "motif": "risk",
-    "motif_label": "Prediction · Interpretation · Decision"
+    "motif_label": "Models and payout rules"
   },
   {
     "slug": "credit-risk-simulation",
-    "title": "Understanding portfolio tail risk",
+    "title": "Simulating credit portfolio losses",
     "category": "Statistical analysis",
     "featured": false,
-    "summary": "Using a Vasicek one-factor model and Monte Carlo simulation to study how correlated defaults shape credit portfolio losses.",
+    "summary": "Using Monte Carlo simulation to see how default probabilities and correlations between borrowers affect a credit portfolio’s losses.",
     "tools": [
       "Python",
       "Monte Carlo",
       "Vasicek model"
     ],
     "context": "Duke · MATH 789 team project",
-    "question": "How do default probabilities and dependence between borrowers change the distribution of credit portfolio losses?",
+    "question": "What happens to portfolio losses when borrowers are more likely to default at the same time? We looked at how default probabilities and correlations changed the loss distribution.",
     "approach": [
-      "Used the public Default of Credit Card Clients dataset as the portfolio basis.",
-      "Modeled defaults through a shared systematic factor and borrower-specific factors in the Vasicek framework.",
-      "Simulated loss distributions under alternative default-probability and correlation assumptions, comparing Value-at-Risk and Conditional Value-at-Risk."
+      "Started with the public Default of Credit Card Clients dataset as the basis for the portfolio.",
+      "Used a Vasicek one-factor model, with a shared systematic factor and borrower-specific factors, to model defaults.",
+      "Simulated losses under different default-probability and correlation assumptions, then compared Value-at-Risk and Conditional Value-at-Risk."
     ],
-    "takeaway": "The simulations show why expected loss alone does not describe portfolio stress: changing default dependence can alter the tail of the loss distribution substantially.",
-    "limitation": "Results depend on the one-factor model, selected scenario assumptions, and a historical dataset. They are a classroom simulation, not a forecast of current credit losses.",
+    "takeaway": "Expected loss doesn’t tell the whole story. In our simulations, changing the dependence between defaults could substantially change the tail of the loss distribution, where the largest losses occur.",
+    "limitation": "The results depend on the one-factor model, the scenarios we chose, and a historical dataset. This was a classroom simulation, so it shouldn’t be read as a forecast of current credit losses.",
     "credits": "Team: Jordan Andrew, Ammy Lin, Farnoosh Memari, and Tonantzin Real Rojas. Completed for MATH 789 at Duke University.",
     "github": "https://github.com/ammylin/credit-risk-vasicek-simulation",
     "report": "https://github.com/ammylin/credit-risk-vasicek-simulation/blob/main/paper.pdf",
     "motif": "simulation",
-    "motif_label": "Scenarios → Losses → Tail risk"
+    "motif_label": "Simulating losses under different assumptions"
   },
   {
     "slug": "dna-dilemma",
@@ -147,27 +147,27 @@
     "category": "Data ethics",
     "year": "2026",
     "featured": false,
-    "summary": "A classroom ethics simulation exploring genetic data privacy, consent, and competing responsibilities through four stakeholder perspectives.",
+    "summary": "What would you do if a company sold your genetic data? We designed a classroom discussion around four people with different stakes in that decision.",
     "tools": [
       "Scenario design",
       "Data ethics",
       "JavaScript"
     ],
     "context": "Duke · IDS 704 classroom discussion",
-    "role": "Co-designed classroom scenarios and co-led the discussion with Tonantzin Real Rojas. The repository credits Gemini-assisted implementation of the web experience.",
-    "question": "How do decisions about genetic data change when viewed from the perspective of a consumer, executive, buyer, or data scientist?",
+    "role": "Tonantzin Real Rojas and I designed the scenarios and led the class discussion together. The web implementation was built with Gemini assistance, as credited in the repository.",
+    "question": "A consumer, company executive, buyer, and data scientist might see the same genetic-data sale very differently. We wanted classmates to work through those perspectives and think about the responsibilities involved.",
     "approach": [
-      "Designed four stakeholder paths around a hypothetical genetic-data sale and its consequences.",
-      "Used branching choices to surface tensions between consent, privacy, research value, and organizational obligations.",
-      "Added reflection prompts and a personal decision recap to support classroom discussion."
+      "Designed four stakeholder paths around a hypothetical genetic-data sale and what might follow from it.",
+      "Created branching choices about consent, privacy, research value, and responsibilities within an organization.",
+      "Added reflection prompts and a recap of each participant’s decisions for the class discussion."
     ],
-    "takeaway": "The simulation makes ethical tradeoffs tangible by asking participants to choose, revisit their assumptions, and compare how responsibility looks from another stakeholder’s perspective.",
-    "limitation": "The scenarios are hypothetical teaching material inspired by real events. They are designed for ethical reflection, not as a factual reconstruction or legal analysis of the 23andMe case.",
+    "takeaway": "The point was to give classmates a set of decisions to work through, then a chance to discuss why they chose what they did. Taking on another role was part of that exercise.",
+    "limitation": "The scenarios are hypothetical and inspired by real events. They’re teaching material for an ethics discussion, rather than a factual account or legal analysis of the 23andMe case.",
     "credits": "Discussion and scenario design: Ammy Lin and Tonantzin Real Rojas. Developed for IDS 704: Data Science Ethics and Policy at Duke University, with AI-assisted web implementation.",
     "github": "https://github.com/ammylin/the-dna-dilemma",
     "demo": "https://ammylin.github.io/the-dna-dilemma/",
-    "demo_label": "Explore the simulation",
+    "demo_label": "Try the simulation",
     "motif": "ethics",
-    "motif_label": "One dataset. Four perspectives."
+    "motif_label": "Four roles in a genetic-data sale"
   }
 ]
