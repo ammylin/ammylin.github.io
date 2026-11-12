@@ -143,17 +143,21 @@ def home():
     page('/','',body)
 
 def build_about():
+    biography=content('about')
+    split=biography.index('<h2')
+    opening,values=biography[:split],biography[split:]
     roles=[]
     for role in EXPERIENCE['current']:
         tags=''.join(f'<span>{E(tag)}</span>' for tag in role['tags'])
         roles.append(f'''<article class="experience-row"><div class="experience-when"><p>{E(role['dates'])}</p><span>{E(role['organization'])}</span></div><div><h3>{E(role['title'])}</h3><p class="experience-summary">{E(role['summary'])}</p><div class="project-tags">{tags}</div></div></article>''')
     earlier=''.join(f'''<article><p class="eyebrow">{E(role['dates'])}</p><h3>{E(role['organization'])}</h3><p class="earlier-title">{E(role['title'])}</p><p>{E(role['summary'])}</p></article>''' for role in EXPERIENCE['earlier'])
-    body=f'''<section class="wrap about-page">{page_intro('Hi, I’m Ammy','Many interests.<br><em>One curious person.</em>')}<div class="about-opening"><div class="prose">{content('about')}</div><figure class="portrait"><img src="{DATA['portrait']}" alt="Portrait of Ammy Lin" width="922" height="1152"><figcaption>Data, words, music—and plenty still to learn.</figcaption></figure></div>
-    <nav class="about-jumps" aria-label="On this page"><a href="#education">Education</a><a href="#experience">Experience</a><a href="#personal">A little more me</a><a href="/beyond/#music">My musical journey {arrow()}</a></nav>
+    body=f'''<section class="wrap about-page">{page_intro('A little about me','Always learning.<br><em>Always becoming.</em>')}<div class="about-opening"><div class="prose">{opening}</div><figure class="portrait"><img src="{DATA['portrait']}" alt="Portrait of Ammy Lin" width="922" height="1152"></figure></div>
+    <nav class="about-jumps" aria-label="On this page"><a href="#values">Ideas &amp; values</a><a href="#education">Education</a><a href="#experience">Experience</a><a href="#personal">Fun facts</a><a href="/beyond/#music">My musical journey {arrow()}</a></nav>
+    <section class="prose values-section restored-values" id="values">{values}</section>
     <section class="about-section" id="education"><div class="section-heading"><div><p class="eyebrow">The academic chapters</p><h2>Learning across disciplines<span class="brand-dot">.</span></h2></div></div><div class="education-grid"><article><p class="eyebrow">2025–2027 · Expected</p><h3>Duke University</h3><p>M.S., Interdisciplinary Data Science</p></article><article><p class="eyebrow">Class of 2024</p><h3>Carleton College</h3><p>B.A., Mathematics &amp; Chinese<br>Minor in Music Performance</p></article><article><p class="eyebrow">Summer 2023</p><h3>National Taiwan University</h3><p>Chinese studies</p></article></div></section>
-    <section class="about-section" id="experience"><div class="section-heading"><div><p class="eyebrow">Research, practice &amp; teaching</p><h2>Experience, with a through line<span class="brand-dot">.</span></h2></div><a class="text-link" href="https://www.linkedin.com/in/ammy-lin/">LinkedIn {arrow()}</a></div><p class="section-description">Working with data and working with people have often gone hand in hand. Here are a few of the places I’ve learned from both.</p><div class="experience-list">{''.join(roles)}</div><details class="personal-details earlier-experience"><summary>Earlier chapters <span>Education, writing &amp; analysis</span></summary><div class="earlier-grid">{earlier}</div></details></section>
+    <section class="about-section" id="experience"><div class="section-heading"><div><p class="eyebrow">Research, practice &amp; teaching</p><h2>Experience<span class="brand-dot">.</span></h2></div><a class="text-link" href="https://www.linkedin.com/in/ammy-lin/">LinkedIn {arrow()}</a></div><div class="experience-list">{''.join(roles)}</div><details class="personal-details earlier-experience"><summary>Earlier chapters <span>Education, writing &amp; analysis</span></summary><div class="earlier-grid">{earlier}</div></details></section>
     {content('about-personal')}
-    <section class="about-signoff"><p>There’s always more to learn—and someone interesting to learn it from.</p><a class="text-link" href="/contact/">Let’s say hello {arrow()}</a></section></section>'''
+    </section>'''
     page('/about/','About',body,active='/about/',description='Meet Ammy Lin: Duke data science master’s student, TRUST Lab researcher, teacher, and musician. Explore her experience, education, and the interests that connect them.')
 
 def build_articles():

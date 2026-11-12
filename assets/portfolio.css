@@ -12,6 +12,8 @@
 .about-page .about-opening .prose{font-size:17px}
 .about-page .about-opening .prose p:last-child{margin-bottom:0}
 .about-page .portrait{max-width:365px;justify-self:end}
+.restored-values{border-top:0;margin-block:40px 55px;scroll-margin-top:35px}
+.about-page>.personal-section{border-bottom:0;padding-bottom:70px}
 .about-jumps{display:flex;flex-wrap:wrap;gap:20px 30px;padding-block:24px;border-block:1px solid var(--rule);margin-top:45px}
 .about-jumps>a{font-size:11px;text-decoration:none;color:var(--accent)}
 .about-section{padding-block:55px;border-bottom:1px solid var(--rule);scroll-margin-top:30px}
