@@ -34,6 +34,8 @@ The public address in `site.json` is `https://ammylin.com`, with `preview: false
 - `assets/main.js`: mobile menu and project category filters.
 - `assets/images/`: local images, compressed as WebP. No images depend on WordPress staying online.
 
+Performance videos use `popularity_rank` in `content/manifest.json`, taken from the YouTube channel’s **Popular** tab. The top three are featured, and the remaining recordings use the same order. `video_popularity_checked_on` records the date of that snapshot; refresh the ranks there when updating the selection.
+
 To add a post, create `content/your-post-slug.html` and add its metadata to the `posts` array in `content/manifest.json`. Keep the newest post first. Rebuild and run the checks. You can also ask Codex to do this in plain English.
 
 When editing copy, use Ammy’s original essays and About page as the voice reference. Keep her original writing intact unless she asks for edits. New copy should be conversational and specific, with varied sentence lengths and few em dashes. Avoid slogans, repeated sentence patterns, and invented feelings or personal takeaways. Keep project results, limitations, and team contributions accurate.

@@ -120,91 +120,105 @@
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=20O1uYqYFaY",
       "title": "Jules Mouquet  - La Flute de Pan (II. Pan et les oiseaux)",
-      "thumbnail": "/assets/images/f26c3f4fd6-hqdefault.webp"
+      "thumbnail": "/assets/images/f26c3f4fd6-hqdefault.webp",
+      "popularity_rank": 15
     },
     {
       "id": "jEu6kmZmnBw",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=jEu6kmZmnBw",
       "title": "Johann Sebastian Bach - Partita in A minor for Solo Flute (I. Allemande)",
-      "thumbnail": "/assets/images/712cf4673a-hqdefault.webp"
+      "thumbnail": "/assets/images/712cf4673a-hqdefault.webp",
+      "popularity_rank": 19
     },
     {
       "id": "3dMctCbdDu8",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=3dMctCbdDu8",
       "title": "Carl Reinecke  - Sonata \"Undine\" Op. 167 (I. Allegro)",
-      "thumbnail": "/assets/images/44a5e2182d-hqdefault.webp"
+      "thumbnail": "/assets/images/44a5e2182d-hqdefault.webp",
+      "popularity_rank": 14
     },
     {
       "id": "ETQEXxvF1sE",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=ETQEXxvF1sE",
       "title": "Benjamin Godard - Suite de trois morceaux, Op. 116 (II. Idylle)",
-      "thumbnail": "/assets/images/0d49295f5f-hqdefault.webp"
+      "thumbnail": "/assets/images/0d49295f5f-hqdefault.webp",
+      "popularity_rank": 21
     },
     {
       "id": "yxBEVBvJZDI",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=yxBEVBvJZDI",
       "title": "Benjamin Godard - Suite de trois morceaux, Op. 116 (I. Allegretto)",
-      "thumbnail": "/assets/images/920f68e665-hqdefault.webp"
+      "thumbnail": "/assets/images/920f68e665-hqdefault.webp",
+      "popularity_rank": 20
     },
     {
       "id": "HZFq0ZA2zHc",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=HZFq0ZA2zHc",
       "title": "Astor Piazzolla - Libertango (arr. Matteo Del Soldà)",
-      "thumbnail": "/assets/images/29c063a9fe-hqdefault.webp"
+      "thumbnail": "/assets/images/29c063a9fe-hqdefault.webp",
+      "popularity_rank": 3
     },
     {
       "id": "ce_vtbnGB0w",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=ce_vtbnGB0w",
       "title": "Bohuslav Martinů - Sonata for Flute, Violin, and Piano, H. 254 (I. Allegro poco moderato)",
-      "thumbnail": "/assets/images/4dc1982493-hqdefault.webp"
+      "thumbnail": "/assets/images/4dc1982493-hqdefault.webp",
+      "popularity_rank": 11
     },
     {
       "id": "-A7gGuDa4b4",
       "group": "Flute",
       "url": "https://www.youtube.com/watch?v=-A7gGuDa4b4",
       "title": "Astor Piazzolla - Los pájaros perdidos (arr. Matteo Del Soldà)",
-      "thumbnail": "/assets/images/965e4cf7af-hqdefault.webp"
+      "thumbnail": "/assets/images/965e4cf7af-hqdefault.webp",
+      "popularity_rank": 2
     },
     {
       "id": "1lbkYMOTau4",
       "group": "Dizi",
       "url": "https://www.youtube.com/watch?v=1lbkYMOTau4",
       "title": "江先渭 - 姑苏行 (A Trip to Suzhou)",
-      "thumbnail": "/assets/images/cab5b33f63-hqdefault.webp"
+      "thumbnail": "/assets/images/cab5b33f63-hqdefault.webp",
+      "popularity_rank": 12
     },
     {
       "id": "zRCSSGoZhmg",
       "group": "Dizi",
       "url": "https://www.youtube.com/watch?v=zRCSSGoZhmg",
       "title": "荫中鸟 (Birds Amidst Tree Shadows), featuring Masters Zhu Changyao, erhu; Gao Hong, pipa",
-      "thumbnail": "/assets/images/df496bb158-hqdefault.webp"
+      "thumbnail": "/assets/images/df496bb158-hqdefault.webp",
+      "popularity_rank": 1
     },
     {
       "id": "raWLFsM0D7M",
       "group": "Dizi",
       "url": "https://www.youtube.com/watch?v=raWLFsM0D7M",
       "title": "五梆子",
-      "thumbnail": "/assets/images/cb30301882-hqdefault.webp"
+      "thumbnail": "/assets/images/cb30301882-hqdefault.webp",
+      "popularity_rank": 16
     },
     {
       "id": "Cqpy6uVFZkI",
       "group": "Piano",
       "url": "https://www.youtube.com/watch?v=Cqpy6uVFZkI",
       "title": "Frédéric Chopin - Raindrop Prelude (Op. 28, No. 15)",
-      "thumbnail": "/assets/images/e35a9403bd-hqdefault.webp"
+      "thumbnail": "/assets/images/e35a9403bd-hqdefault.webp",
+      "popularity_rank": 13
     },
     {
       "id": "kIgKdgIruco",
       "group": "Piano",
       "url": "https://www.youtube.com/watch?v=kIgKdgIruco",
       "title": "Frédéric Chopin - Waltz in C-sharp minor (Op. 64, No. 2)",
-      "thumbnail": "/assets/images/53af6125a0-hqdefault.webp"
+      "thumbnail": "/assets/images/53af6125a0-hqdefault.webp",
+      "popularity_rank": 10
     }
-  ]
+  ],
+  "video_popularity_checked_on": "2026-11-12"
 }
