@@ -1,0 +1,51 @@
+{
+  "current": [
+    {
+      "organization": "TRUST Lab",
+      "title": "Graduate Research Assistant",
+      "dates": "August 2026–present",
+      "summary": "I study when negotiating language-model agents say one thing and do another. Using the Catanist game environment, I compare public statements with recorded actions and test how instructions, competition, and the mix of agents affect that behavior.",
+      "tags": ["LLM agents", "Evaluation", "Controlled experiments"]
+    },
+    {
+      "organization": "Duke University · IDS 706",
+      "title": "Graduate Teaching Assistant",
+      "dates": "August 2026–present",
+      "summary": "I support Data Engineering Systems through office hours, grading, and in-class demonstrations. Topics range from SQL and Airflow to reproducible Python projects, GitHub Actions, Docker, and database design.",
+      "tags": ["Data engineering", "Teaching", "Reproducibility"]
+    },
+    {
+      "organization": "Liberty Mutual Insurance · Boston",
+      "title": "Graduate Data Science Intern",
+      "dates": "June–August 2026",
+      "summary": "I combined features from claim photos with a structured-data model using LightGBM to improve early total-loss detection. My work included leakage-safe validation, Optuna tuning, and ablation and SHAP analyses to understand where the image features helped—and where the model’s limits remained.",
+      "tags": ["Multimodal ML", "LightGBM", "Model validation"]
+    }
+  ],
+  "earlier": [
+    {
+      "organization": "Central Lakes Learning Center",
+      "title": "Manager & Instructor",
+      "dates": "2024–2025",
+      "summary": "Taught piano and violin, tutored composition and geometry, and coordinated schedules and communication with students and families."
+    },
+    {
+      "organization": "Carleton College",
+      "title": "Writing Consultant, Speech Coach & Math Tutor",
+      "dates": "2022–2024 · roles held across this period",
+      "summary": "Worked one-on-one with students on writing, public speaking, calculus, and linear algebra. As a lead writing consultant, I also helped train and mentor fellow consultants."
+    },
+    {
+      "organization": "Ed100",
+      "title": "Engagement & Data Analyst Intern",
+      "dates": "2022–2023",
+      "summary": "Researched education policy, analyzed quantitative and qualitative data, and created published data visualizations to make education information more accessible."
+    },
+    {
+      "organization": "Phi Beta Kappa Alumni Association of Greater Houston",
+      "title": "Archival Research & Fundraising Intern",
+      "dates": "2023–2024",
+      "summary": "Combined archival research at Rice University with donor-data analysis and built a spreadsheet of more than 12,000 prospective donors."
+    }
+  ]
+}
