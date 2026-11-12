@@ -26,7 +26,7 @@ The public address in `site.json` is `https://ammylin.com`, with `preview: false
 
 - `site.json`: contact email, website address, description, and preview mode.
 - `content/manifest.json`: post titles, dates, excerpts, images, reading times, and performance video details.
-- `content/projects.json`: selected projects, tools, summaries, scope, team attribution, source repositories, and figure credits. Set `featured` to `true` for homepage projects.
+- `content/projects.json`: selected projects, tools, summaries, scope, team attribution, source repositories, and figure credits. Optional fields include `additional_links`, `report_label`, and `visual_labels` for projects without a figure. Set `featured` to `true` for homepage projects.
 - `content/*.html`: the original page and post content, with WordPress layout code removed.
 - `scripts/build.py`: shared header and footer, homepage, page layouts, and RSS/sitemap generation.
 - `assets/style.css`: shared colors, typography, and original content styles.
@@ -46,4 +46,4 @@ The main navigation is **Projects**, **About**, and **Music & more**, plus conta
 
 The former `/blog/`, `/media/`, `/lessons/`, `/press/`, and `/events-gigs/` pages now redirect to the appropriate section of `/beyond/`. GitHub Pages serves these as HTML refresh redirects with a visible fallback link and a canonical URL. The site does not depend on JavaScript for these redirects or disclosure controls.
 
-The initial project selection uses public repositories, including four pinned projects. Descriptions distinguish collaborative work, classroom simulations, and synthetic datasets. Images on case-study pages link to their original repository figures. Update the project file when adding results or changing role descriptions; avoid presenting experimental results as production deployments.
+The portfolio includes 14 projects and teaching examples selected from public repositories, including collaborative work with Ammy named as a coauthor. The homepage keeps three featured projects; the full index adds filters for NLP, mathematics, and teaching. Personal photos appear beside the homepage background and music sections. Descriptions distinguish collaborative work, classroom simulations, and synthetic datasets. Images on case-study pages link to their original repository figures. Update the project file when adding results or changing role descriptions; avoid presenting experimental results as production deployments.

@@ -89,6 +89,134 @@
     "demo_label": "Watch the walkthrough"
   },
   {
+    "slug": "mechanistic-interpretability",
+    "title": "Looking inside a four-neuron model",
+    "category": "Machine learning",
+    "year": "2026",
+    "featured": false,
+    "summary": "I followed a small sentiment model from its predictions to its hidden neurons, then turned neurons off to check what changed.",
+    "tools": [
+      "PyTorch",
+      "Neuron ablation",
+      "Model interpretation"
+    ],
+    "context": "Duke · AIPI 590 notebook investigation",
+    "role": "I reproduced the starter model’s training and wrote an investigation of its activations, output contributions, and neuron ablations. The notebook builds on a team sentiment-model exercise.",
+    "question": "What can we reasonably say that a hidden neuron does? I used a small model where I could inspect every allowed input and check an explanation against counterexamples.",
+    "approach_heading": "What I did",
+    "approach": [
+      "Reproduced a model with six input words, four hidden neurons, and two output scores. It used 28 training examples and four validation examples.",
+      "Compared activations across positive and negative inputs, then calculated how each neuron contributed to the difference between output scores.",
+      "Set individual activations to zero without retraining, checked all 32 combinations, and looked for examples that challenged an overly broad explanation."
+    ],
+    "takeaway": "Turning off neuron 2 changed five of the 32 predictions. Its contribution pushed the model toward a negative answer, but it also activated for positive inputs. Calling it an exclusively negative detector would have missed that distinction.",
+    "limitation": "This is a six-word task that ignores word order. The 32 combinations include the training data, and only four examples were held out. The findings describe one seeded toy model, not how a language model understands real sentences.",
+    "credits": "Investigation by Ammy Lin, building on a team starter-model exercise for AIPI 590. The notebook explains which training results were reproduced.",
+    "github": "https://github.com/ammylin/AIPI590_mechanistic_interpretability_wk7",
+    "image": "/assets/images/neuron-ablation.webp",
+    "image_alt": "Two charts showing changes in predicted labels and output scores when each of four hidden neurons is turned off",
+    "image_caption": "The ablation results saved in my investigation notebook. These cover all 32 allowed word combinations, including the training examples.",
+    "image_source": "https://github.com/ammylin/AIPI590_mechanistic_interpretability_wk7/blob/main/mechanistic_investigation.ipynb",
+    "additional_links": [
+      {
+        "label": "Read the notebook",
+        "url": "https://github.com/ammylin/AIPI590_mechanistic_interpretability_wk7/blob/main/mechanistic_investigation.ipynb"
+      }
+    ]
+  },
+  {
+    "slug": "spelling-corrector",
+    "title": "Building a spelling corrector",
+    "category": "Natural language processing",
+    "featured": false,
+    "summary": "A Python spelling corrector that weighs how common a word is against how likely a particular typo would be.",
+    "tools": [
+      "Python",
+      "Noisy-channel model",
+      "Edit distance"
+    ],
+    "context": "NLP implementation exercise",
+    "question": "If a word has a typo, how do we choose the most likely intended word? This project combines word frequencies with an error model for insertions, deletions, and substitutions.",
+    "approach_heading": "The implementation",
+    "approach": [
+      "Loaded word counts and character-level error counts to estimate word and edit probabilities.",
+      "Generated vocabulary candidates one insertion, deletion, or substitution away from the input, then ranked them using the language and error models.",
+      "Kept known words and used a deterministic ordering to resolve ties. The repository also includes tests of the corrector."
+    ],
+    "takeaway": "The candidate list and the ranking model both matter. A likely correction still has to be in the vocabulary and within the edits the implementation considers.",
+    "limitation": "The implementation handles single-character insertions, deletions, and substitutions. It does not include transpositions or sentence context, and it can struggle with rare words and names.",
+    "credits": "Repository: Ammy Lin. This is an implementation of a standard noisy-channel spelling-correction approach.",
+    "github": "https://github.com/ammylin/spelling-corrector-NLP",
+    "report": "https://github.com/ammylin/spelling-corrector-NLP/blob/main/spelling_correction.pdf",
+    "motif": "language",
+    "visual_labels": [
+      "Vocabulary",
+      "Edit model",
+      "Correction"
+    ],
+    "motif_label": "Choosing a likely intended word"
+  },
+  {
+    "slug": "trip-streaming",
+    "title": "Streaming trip data with Kafka",
+    "category": "Data engineering",
+    "featured": false,
+    "summary": "A local streaming pipeline that sends generated trip events through Kafka and PostgreSQL to a live Streamlit dashboard.",
+    "tools": [
+      "Kafka",
+      "PostgreSQL",
+      "Streamlit",
+      "Docker"
+    ],
+    "context": "Data engineering pipeline project",
+    "question": "How do we get events from a running producer into a database and dashboard as they arrive? I used simulated ride-sharing trips to work through that flow.",
+    "approach_heading": "The implementation",
+    "approach": [
+      "Generated trip events in Python and published them to a Kafka topic.",
+      "Consumed the events into PostgreSQL, using trip IDs to avoid inserting the same event twice.",
+      "Built a dashboard with city filters, recent trips, and summaries of fares, distances, and vehicle types. Docker Compose starts the local services."
+    ],
+    "takeaway": "The project connects a producer, message broker, database, and dashboard in one local example. The repository includes a screenshot and recording of the dashboard updating.",
+    "limitation": "The trips are synthetic and the system is a local demonstration. Kafka offsets and database writes are not committed as one transaction, so the example does not establish exactly-once processing or production reliability.",
+    "credits": "Project repository: Ammy Lin. The producer, consumer, and dashboard are separate Python scripts.",
+    "github": "https://github.com/ammylin/kafka_realtime_pipeline",
+    "image": "/assets/images/trip-streaming-dashboard.webp",
+    "image_alt": "Streamlit trip dashboard with a city filter, recent trip table, and charts of revenue and vehicle types",
+    "image_caption": "The dashboard screenshot from the repository, using generated trips.",
+    "image_source": "https://github.com/ammylin/kafka_realtime_pipeline/blob/main/img/dashboard.png"
+  },
+  {
+    "slug": "regional-gasoline-prices",
+    "title": "How oil prices reach the gas pump",
+    "category": "Statistical analysis",
+    "year": "2026",
+    "featured": false,
+    "summary": "We compared how crude oil price changes showed up in retail gasoline prices on the East Coast and in the Midwest.",
+    "tools": [
+      "R",
+      "Quarto",
+      "VECM",
+      "SVAR"
+    ],
+    "context": "Team project in econometrics and time-series analysis",
+    "question": "Do oil-price changes reach gasoline prices differently across regions? We compared the East Coast and Midwest using weekly data from January 2022 through March 2026.",
+    "approach": [
+      "Prepared price series from EIA and FRED, then checked stationarity and evidence of cointegration.",
+      "Estimated vector error correction models to study long-run relationships and short-run adjustment.",
+      "Used structural VAR models and impulse responses to compare how price shocks moved through the two regions. The analysis files are written in R and Quarto."
+    ],
+    "takeaway": "Our reported long-run elasticities were close to 0.68 in both regions. The East Coast showed stronger cointegration evidence, while the Midwest showed larger gasoline-specific shocks. Similar long-run estimates did not mean the regional dynamics were identical.",
+    "limitation": "The structural VAR uses an ordering assumption about which prices can respond within the same week. Results also depend on the sample period and model choices, so they should not be read as a current gasoline-price forecast.",
+    "credits": "Team: Ammy Lin, Farnoosh Memari, Tonantzin Real Rojas, and Isaac Vergara Mercenario. This repository is a fork of the collaborative project.",
+    "github": "https://github.com/ammylin/regional-oil-gas-ts",
+    "report": "https://github.com/ammylin/regional-oil-gas-ts/blob/main/02_vecm.pdf",
+    "report_label": "Read the VECM analysis",
+    "image": "/assets/images/regional-energy-prices.webp",
+    "image_alt": "Weekly East Coast and Midwest gasoline prices and WTI crude oil prices from 2022 through 2026",
+    "image_caption": "The weekly price series used in our analysis. Gasoline is shown in dollars per gallon and crude oil in dollars per barrel.",
+    "image_source": "https://github.com/ammylin/regional-oil-gas-ts/blob/main/img/timeseries.png"
+  },
+  {
     "slug": "flood-risk-modeling",
     "title": "Modeling flood risk",
     "category": "Machine learning",
@@ -169,5 +297,141 @@
     "demo_label": "Try the simulation",
     "motif": "ethics",
     "motif_label": "Four roles in a genetic-data sale"
+  },
+  {
+    "slug": "global-happiness",
+    "title": "Looking at patterns in happiness data",
+    "category": "Statistical analysis",
+    "year": "2025",
+    "featured": false,
+    "summary": "Using World Happiness Report data to ask how health, economic conditions, generosity, and freedom relate to reported well-being.",
+    "tools": [
+      "R",
+      "Quarto",
+      "Regression",
+      "ggplot2"
+    ],
+    "context": "Duke · IDS 702 team project",
+    "question": "Does the association between health and happiness vary with economic conditions? We also looked at whether generosity and freedom were related to happiness differently when considered together.",
+    "approach": [
+      "Combined World Happiness Report data from 2015 to 2019 and explored country-level patterns.",
+      "Used linear regression with a life-expectancy-by-GDP interaction and country-clustered standard errors.",
+      "Fit an ordinal logistic model with a generosity-by-freedom interaction, then plotted predicted probabilities and discussed the modeling assumptions."
+    ],
+    "takeaway": "The fitted associations depended on the interactions in the models. Looking at a single coefficient in isolation would have hidden that. We wrote up the analysis as a course policy memo addressed to UNDP.",
+    "limitation": "This was an observational class project. Country-level associations do not establish the effects of a policy on individuals. Missing country-years, changing survey measures, and the model assumptions also limit the conclusions.",
+    "credits": "Team: Arvind Kandala, Ammy Lin, Lingyue Hao, and Shelly Cao. Completed for IDS 702: Modeling and Representation of Data at Duke in Fall 2025. This repository is a fork of the team project.",
+    "github": "https://github.com/ammylin/global-happiness-analysis",
+    "report": "https://github.com/ammylin/global-happiness-analysis/blob/main/report.pdf",
+    "motif": "statistics",
+    "visual_labels": [
+      "Health",
+      "GDP",
+      "Happiness"
+    ],
+    "motif_label": "Comparing associations across countries"
+  },
+  {
+    "slug": "mental-health-text-classification",
+    "title": "Comparing models for mental-health text",
+    "category": "Natural language processing",
+    "year": "2025",
+    "featured": false,
+    "summary": "We compared sentence embeddings, topic models, and clustering for a seven-label text-classification dataset.",
+    "tools": [
+      "Sentence-BERT",
+      "LDA",
+      "K-Means",
+      "Scikit-learn"
+    ],
+    "context": "Duke · NLP team project",
+    "question": "Would adding topic or cluster features improve on sentence embeddings alone? We compared those approaches using a public dataset of text labeled with mental-health-related categories.",
+    "approach": [
+      "Prepared text and compared LDA topic features, TF-IDF-based clusters, and all-MiniLM-L6-v2 sentence embeddings.",
+      "Trained logistic regression classifiers on each representation and on combinations of features.",
+      "Compared accuracy, macro F1, and per-class results on a stratified test split, including confusion matrices."
+    ],
+    "takeaway": "In the saved run, sentence embeddings reached about 70% accuracy and 0.62 macro F1. Adding topic or cluster features changed those results very little. Performance varied considerably across labels, which was easier to see in the per-class metrics than in overall accuracy.",
+    "limitation": "These are dataset labels, not clinical diagnoses, and the project is not a diagnostic tool. Some unsupervised features were fitted before the train/test split; a stricter comparison would fit those steps on training data only. Class imbalance and the source of the text also matter when interpreting the results.",
+    "credits": "Team: Jordan Andrew, Aesha Gandhi, and Ammy Lin. Completed in December 2025. This repository is a fork of the collaborative project.",
+    "github": "https://github.com/ammylin/mental-health-classification_NLP",
+    "report": "https://github.com/ammylin/mental-health-classification_NLP/blob/main/NLP_Final_Paper.pdf",
+    "image": "/assets/images/text-classification-confusion.webp",
+    "image_alt": "Confusion matrix for the sentence-embedding baseline, showing predictions across seven dataset labels",
+    "image_caption": "The saved notebook’s sentence-embedding baseline confusion matrix, labeled “BERT Only Model” in the source.",
+    "image_source": "https://github.com/ammylin/mental-health-classification_NLP/blob/main/model.ipynb"
+  },
+  {
+    "slug": "primes-and-quadratic-forms",
+    "title": "Primes and quadratic forms",
+    "category": "Mathematics",
+    "year": "2024",
+    "featured": false,
+    "summary": "Python tools that accompany our math comps paper, including reduction, enumeration, and composition of binary quadratic forms.",
+    "tools": [
+      "Python",
+      "Number theory",
+      "Computational mathematics"
+    ],
+    "context": "Collaborative mathematics comps project",
+    "question": "How can computation help us explore binary quadratic forms and the ideas in our paper, Primes and Quadratic Forms?",
+    "approach": [
+      "Implemented routines to reduce binary quadratic forms and list reduced forms of a given negative discriminant.",
+      "Included checks for fundamental discriminants and tools for enumerating forms across a range of discriminants.",
+      "Computed Dirichlet composition and supplied examples that call the routines."
+    ],
+    "takeaway": "The code gives readers a way to work through concrete examples alongside the paper, including the reduced forms for a discriminant and the results of composing forms.",
+    "limitation": "The routines focus on the examples in our mathematics paper. The repository does not include large-input benchmarks.",
+    "credits": "Paper and accompanying code: Sophie Boileau, Alejandro González Argüelles, Grace Hanson, Ammy Lin, and Hugh Shanno. This repository is a fork of the collaborative comps project.",
+    "github": "https://github.com/ammylin/Binary-Quadratic-Forms_Math-Comps",
+    "report": "https://github.com/ammylin/Binary-Quadratic-Forms_Math-Comps/blob/main/Binary_Quadratic_Forms___Comps_2023_2024-1.pdf",
+    "motif": "mathematics",
+    "visual_labels": [
+      "Reduce",
+      "Enumerate",
+      "Compose"
+    ],
+    "motif_label": "ax² + bxy + cy²"
+  },
+  {
+    "slug": "data-engineering-teaching",
+    "title": "Teaching reproducible Python workflows",
+    "category": "Teaching",
+    "year": "2026",
+    "featured": false,
+    "summary": "An introductory demo I prepared as a data engineering TA, covering virtual environments, testing, Makefiles, Docker, and GitHub Actions.",
+    "tools": [
+      "Python",
+      "pytest",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "context": "Duke · IDS 706 teaching materials",
+    "role": "I prepared the demo for my role as a teaching assistant for IDS 706: Data Engineering Systems.",
+    "question_heading": "The goal",
+    "question": "How can a small Python example help students practice the tools around their code? The program itself prints a welcome message, leaving room to focus on setup, tests, containers, and automation.",
+    "approach_heading": "What I prepared",
+    "approach": [
+      "Kept the Python application small and added a test suite and Makefile.",
+      "Included a Dockerfile and a GitHub Actions testing workflow, with setup instructions for different operating systems.",
+      "Published an accompanying web demo. A separate containerization example uses a city-weather analysis to demonstrate a reproducible project structure."
+    ],
+    "takeaway": "The materials give students a small project to work through while learning how to test and run their code consistently. The repository includes the setup instructions and example files.",
+    "limitation": "This is an introductory exercise. The application is intentionally small so students can concentrate on setup, tests, containers, and automation.",
+    "credits": "Teaching demo prepared by Ammy Lin for IDS 706 at Duke University.",
+    "github": "https://github.com/ammylin/IDS706-demo-wk-1",
+    "additional_links": [
+      {
+        "label": "Containerization example",
+        "url": "https://github.com/ammylin/IDS706-container-demo-wk5"
+      }
+    ],
+    "motif": "teaching",
+    "visual_labels": [
+      "Test",
+      "Build",
+      "Automate"
+    ],
+    "motif_label": "A small project for practicing the workflow"
   }
 ]
